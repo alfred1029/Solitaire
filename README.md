@@ -3,7 +3,7 @@
 
 1. Card class (Initialization of card set)(Billy)
 
-2. GUI (Ncurse.h)?  
+2. GUI (Ncurses.h)?  
 3. Check valid input  
 4. Card Movement  
   - column to column  
