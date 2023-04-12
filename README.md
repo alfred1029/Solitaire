@@ -1,7 +1,8 @@
 # ENGG1340 project group 69
 ## To do list
 
-1. Card class (Initialization of card set)  
+1. Card class (Initialization of card set)(Billy)
+
 2. GUI (Ncurse.h)?  
 3. Check valid input  
 4. Card Movement  
