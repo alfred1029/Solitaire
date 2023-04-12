@@ -1,8 +1,7 @@
 # ENGG1340 project group 69
 ## To do list
 
-1. Card class (Initialization of card set)(Billy)
-
+1. Card class (Initialization of card set)(Billy)  
 2. GUI (Ncurses.h)?  
 3. Check valid input  
 4. Card Movement  
@@ -16,9 +15,11 @@
 8. Leaderboard  
 9. Score  
 
-(Optional)  
-10. Curse Input  
-11. Check initial game winable
+(Optional)
+
+10. Cursor Input  
+11. Hint of next move  
+12. Check initial game winable  
 
 ## Game description
 ## Game rules
