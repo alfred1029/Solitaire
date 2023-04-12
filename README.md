@@ -20,6 +20,7 @@
 10. Cursor Input  
 11. Hint of next move  
 12. Check initial game winable  
+http://bitly.ws/3Vy7  
 
 ## Game description
 ## Game rules
