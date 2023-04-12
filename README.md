@@ -22,7 +22,7 @@
 ## Used C/C++ library list
 ## Compilation and execution instruction
 ## Group members
-Cheung Yan Shek
+Cheung Yan Shek, UID: 3036065575, Github username: namelessxxv
 
 Hong Hiu Shun, UID: 3036065422  
 
