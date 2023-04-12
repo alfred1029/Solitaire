@@ -13,7 +13,8 @@
 5. Save load undo redo  
 6. File input output  
 7. Leaderboard  
-8. Score  
+8. Score
+9. http://bitly.ws/3Vy7  
 
 
 
