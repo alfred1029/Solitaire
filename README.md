@@ -31,5 +31,5 @@ Hui Lok Samuel, UID: 3036059980
 
 Wong Wai Chung, UID: 3036068618, Github username: alfred1029
 
-Wun Ally Lok Yin
+Wun Ally Lok Yin, UID: 3036068589, Github username: allywun
 
