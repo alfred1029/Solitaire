@@ -1,4 +1,21 @@
 # ENGG1340 project group 69
+## To do list
+
+1. Card class (Initialization of card set)  
+2. GUI (Ncurse.h)?  
+3. Check valid input  
+4. Card Movement  
+  - column to column  
+  - column to stack  
+  - deck to column  
+  - deck to stack  
+5. Save load undo redo  
+6. File input output  
+7. Leaderboard  
+8. Score  
+
+
+
 ## Game description
 ## Game rules
 ## Game features
