@@ -12,11 +12,13 @@
   - deck to stack  
 5. Save load undo redo  
 6. File input output  
+7. Check win/ no more available move  
 7. Leaderboard  
-8. Score
-9. http://bitly.ws/3Vy7  
+8. Score  
 
-
+(Optional)  
+9. Curse Input  
+10. Check initial game winable
 
 ## Game description
 ## Game rules
