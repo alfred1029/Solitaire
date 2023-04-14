@@ -8,7 +8,7 @@ using namespace std;
 //Structure of each card
 struct Card {
     int number; //1 for A, 11 for J, 12 for Q, 13 for K
-    string suit;// contian Heart, Diamond, Club and Spade
+    string suit;// H for Heart, D for Diamond, C for Club and S for Spade
     bool shown;//ture for shown, false for not shown
 };
 
