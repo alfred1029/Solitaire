@@ -5,7 +5,7 @@
 
 using namespace std;
 
-//structure of each card
+//Structure of each card
 struct Card {
     int number; //1 for A, 11 for J, 12 for Q, 13 for K
     string suit;// contian Heart, Diamond, Club and Spade
