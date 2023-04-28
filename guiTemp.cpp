@@ -6,7 +6,7 @@
 using namespace std;
 
 // GUI for testing
-void printTable(vector<vector<Card>> &table, int move, int score) {
+void printTable(vector<vector<Card>> &table, int move = 0, int score = 0) {
     cout << "Move: " << move << "       Score: " << score << endl;
     cout << "Stock: ";
     for (int i = 0; i < table[7].size(); ++i){
