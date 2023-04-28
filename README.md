@@ -1,8 +1,12 @@
 # ENGG1340 project group 69
 ## To do list
 
-1. Card class (Initialization of card set)(Billy)  
-2. GUI (Ncurses.h)?  
+1. Deck initialization 
+  - Please refer to card.h, initTable.cpp 
+  - To be implement: import from winning_deck_result.csv (3 difficulty levels)
+2. GUI (Ncurses.h)
+  - Added guiTemp.cpp for testing purpose
+  - To be implement: Offical GUI
 3. Check valid input  
 4. Card Movement  
   - column to column  
