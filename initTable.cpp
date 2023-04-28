@@ -31,7 +31,9 @@ vector<Card> initRandomDeck() {
 // initialize the game table
 vector<vector<Card>> initTable(vector<Card> &deck){
 
-    //fill the deck into game table, 7 columns (column 0 - 6), from 1 to 7 cards
+    // Fill the deck into game table, 7 columns (column 0 - 6), from 1 to 7 cards
+    // The last card (size -1) of each column is shown
+    // The filling method may need to be changed if we implement the winnable deck
     vector<vector<Card>> table(8);
     for (int i = 0; i < 7; ++i) {
         for (int j = 0; j <= i; ++j) {
