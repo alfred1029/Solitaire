@@ -15,7 +15,7 @@
   - deck to stack  
 5. Save load undo redo  (Billy/temp)
 6. File input output  
-7. Check win/ no more available move  
+7. Check win/ no more available move  (Ally)
 8. Leaderboard  
 9. Score  
 
