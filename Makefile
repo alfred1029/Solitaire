@@ -16,7 +16,7 @@ main.o: main.cpp initTable.h
 	g++ $(FLAGS) -c $<
 
 main: main.o initTable.o guiTemp.o move.o checkInput.o
-	g++ $(FLAGS) $^ -o $@
+	g++ $(FLAGS) $^ -g -o $@
 
 clean:
 	rm -f main main.o initTable.o guiTemp.o move.o checkInput.o
