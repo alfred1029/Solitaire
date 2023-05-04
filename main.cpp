@@ -18,11 +18,14 @@ int main(){
     // randomize deck
     initRandomDeck(deck);
     initTable(table, cardMap, deck);
+    // free memory from deck
+    delete [] deck;
+    deck = nullptr;
     // command to store user input
     // valid to check if command is valid and pass it to corresponding function
     // column and row indicate point which card
     string command;
-    int valid, column, row;
+    int valid, column, row, target;
     // game loop
     while (command != "e")
     {
@@ -41,12 +44,20 @@ int main(){
                 break;
             case 2:
                 // if valid == 2, move card to column
-                moveCard(table, cardMap, column, row, findTarget(table, column, row));
+                target = findTarget(table, column, row);
+                if (target == -1)
+                    cout << "No possible move!" << endl;
+                    break;
+                moveCard(table, cardMap, column, row, target);
                 ++move;
                 break;
             case 3:
                 // if valid == 3, move card to stack
-                moveCard(table, cardMap, column, row, findStack(table, column, row));
+                target = findStack(table, column, row);
+                if (target == -1)
+                    cout << "No possible move!" << endl;
+                    break;
+                moveCard(table, cardMap, column, row, target);
                 ++move;
                 break;
             default:
