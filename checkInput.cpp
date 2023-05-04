@@ -68,10 +68,13 @@ void findStack (vector<vector<Card>> &table, Ptr &p){
 void findTarget (vector<vector<Card>> &table, Ptr &p){
     p.target = -1;
     for (int i = 0; i < 7 && p.target == -1; ++i){
+        if (i == p.column){
+            continue;
+        }
         // search for the column that is not empty
         if (table[i].size() > 0){
-            // if the card is opposite color and rank is one less than the last card in the column, set target to the column
-            if ((table[i][table[i].size() - 1].suit +1)%2 == (table[p.column][p.row].suit)%2 && table[i][table[i].size() - 1].rank == table[p.column][p.row].rank + 1){
+            // if the card is opposite color and rank is one less than the last card in the target column, set target to the column
+            if (((table[i][table[i].size() - 1].suit +1)%2 == (table[p.column][p.row].suit)%2) && (table[i][table[i].size() - 1].rank == table[p.column][p.row].rank + 1)){
                 p.target = i;
             }
         }
