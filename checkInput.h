@@ -4,12 +4,18 @@
 #include "card.h"
 #include "checkInput.h"
 #include <vector>
+#include <string>
+#include <iostream>
 
 using namespace std;
 
-int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, int &column, int &row, string input);
-int findStack (vector<vector<Card>> &table, int &column, int &row);
-int findTarget (vector<vector<Card>> &table, int &column, int &row);
+/*  Function to check if the input is valid and pass it to corresponding function */
+int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, string input);
+/*  Function to find the stack */
+void findStack (vector<vector<Card>> &table, Ptr &p);
+/*  Function to find the target */
+void findTarget (vector<vector<Card>> &table, Ptr &p);
+/*  Function to convert card to integer */
 int convertCard(string input);
 
 #endif

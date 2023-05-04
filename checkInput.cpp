@@ -14,7 +14,7 @@ using namespace std;
 
 /*  Function to check if the input is valid and pass it to corresponding function */
 int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, int &column, int &row, string input){
-    int valid = -1;
+    int card, valid = -1;
     if (input.substr(0, 2) == "10"){
                 input = 't' + input.substr(2); 
     }
@@ -28,7 +28,7 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, int &colum
             break;
         case 2:
             // convert the string card to integer
-            int card = convertCard(input);
+            card = convertCard(input);
             // if the card is valid
             if (card != -1){
                 column = cardMap[card].column;
@@ -41,7 +41,7 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, int &colum
             if (tolower(input[2]) != 's')
                 break; 
             // if input[2] == s
-            int card = convertCard(input);
+            card = convertCard(input);
             // if the card is valid
             if (card != -1){
                 column = cardMap[card].column;
@@ -56,9 +56,8 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, int &colum
 /* Function to find the stack */
 int findStack (vector<vector<Card>> &table, int &column, int &row){
     int target = -1;
-    Card::Suit suit = table[column][row].suit;
     // if the rank is one greater than card in stack with the same suit, set target to the stack
-    if (table[8][suit].rank == table[column][row].rank - 1){
+    if (table[8][table[column][row].suit].rank == table[column][row].rank - 1){
         target = 8;
     }
     return target;
@@ -151,7 +150,7 @@ int convertCard (string card){
     if (rank == -1 || suit == -1){
         return -1;
     }
-    return rank + suit * 13;
+    return rank -1 + suit * 13;
 }
 
 

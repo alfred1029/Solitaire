@@ -15,10 +15,10 @@ move.o: move.cpp move.h card.h
 main.o: main.cpp initTable.h
 	g++ $(FLAGS) -c $<
 
-main: main.o initTable.o guiTemp.o move.o
-	g++ $(FLAGS) $^ -o $@
+main: main.o initTable.o guiTemp.o move.o checkInput.o
+	g++ $(FLAGS) $^ -g -o $@
 
 clean:
-	rm -f main main.o initTable.o guiTemp.o move.o
+	rm -f main main.o initTable.o guiTemp.o move.o checkInput.o
 
 .PHONY: clean

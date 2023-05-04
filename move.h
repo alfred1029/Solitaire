@@ -1,12 +1,13 @@
 #ifndef MOVE_H
 #define MOVE_H
 
-#include <vector>
 #include "card.h"
+#include <vector>
+#include <iostream>
 
 using namespace std;
 
-void flipStock(vector<vector<Card>> &table);
-void moveCard(vector<vector<Card>> &table, vector<CardMap> &cardMap, int column, int row, int target);
+void flipStock(vector<vector<Card> > &table, Ptr &p);
+void moveCard(vector<vector<Card> > &table, vector<CardMap> &cardMap, Ptr &p);
 
 #endif
