@@ -7,7 +7,7 @@
 
 #include "card.h"
 #include "checkWin.h"
-#include<vector>
+#include <vector>
 
 using namespace std;
 
