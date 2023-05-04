@@ -1,0 +1,10 @@
+4 types of input
+----------------
+1. Flip the stock deck
+    - enter 'f'
+2. Move card
+    - enter the name of card, i.e. "7s" means 7 of Spade
+    - {'d', 'c', 'h', 's'} for Diamond, Club, Heart, Spade
+3. Specify moving to stack
+    - enter the name of card + 's', i.e. "7ss"
+4. 'e' for exit
