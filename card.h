@@ -9,4 +9,10 @@ struct Card{
     bool shown; //true for shown, false for not shown
 };
 
+struct CardMap{
+    // define the map of each card
+    int column;
+    int row;
+};
+
 #endif
