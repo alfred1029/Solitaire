@@ -6,7 +6,7 @@
 
 using namespace std;
 
-vector<Card> initRandomDeck();
-vector<vector<Card>> initTable(vector<Card> &deck);
+void initRandomDeck(Card deck[]);
+void initTable(vector<vector<Card>> &table, vector<CardMap> &cardMap, Card deck[]);
 
 #endif

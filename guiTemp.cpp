@@ -8,6 +8,11 @@ using namespace std;
 // GUI for testing
 void printTable(vector<vector<Card>> &table, int move = 0, int score = 0) {
     cout << "Move: " << move << "       Score: " << score << endl;
+    cout << "Stack: ";
+    for (int i = 0; i < 4; ++i){
+            cout << getString(table[8][i]) << "  ";
+    }
+    cout << endl;
     cout << "Stock: ";
     for (int i = 0; i < table[7].size(); ++i){
         if (table[7][i].shown == true) {
@@ -52,6 +57,9 @@ string getString(Card &t) {
             break;
     }
     switch (t.rank) {
+        case 0:
+            card += " ";
+            break;
         case 1:
             card += "A";
             break;

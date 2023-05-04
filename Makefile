@@ -1,5 +1,8 @@
 FLAGS = -std=c++11
 
+checkInput.o: checkInput.cpp checkInput.h
+	g++ $(FLAGS) -c $<
+
 initTable.o: initTable.cpp initTable.h card.h
 	g++ $(FLAGS) -c $<
 
