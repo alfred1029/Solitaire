@@ -1,14 +1,14 @@
 # ENGG1340 project group 69
 ## To do list
 
-1. Deck initialization 
+1. Deck initialization  (Random init - DONE)
   - Please refer to card.h, initTable.cpp 
   - To be implement: import from winning_deck_result.csv (3 difficulty levels)
 2. GUI (Ncurses.h)
   - Added guiTemp.cpp for testing purpose
   - To be implement: Offical GUI
-3. Check valid input
-4. Card Movement  (Alfred)
+3. Check valid input  (For current GUI - DONE)
+4. Card Movement  DONE
   - column to column  
   - column to stack  
   - deck to column  
