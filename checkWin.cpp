@@ -53,7 +53,7 @@ void moveAvailable(vector<vector<Card>> &table) {
       Card card1 = table[i][table[i].size() - 1];
       Card card2 = table[j][table[j].size() - 1];
         
-      //if the card 2 is opposite color and its rank is one less than the card 1's rank
+      //if card 1 and card 2 are opposite colosr and card 2's rank is one less than card 1's rank, they can be stacked
       if (((card1.suit +1)%2 == (card2.suit)%2) && (card1.rank == card2.rank + 1)) {
         return true;
       }
