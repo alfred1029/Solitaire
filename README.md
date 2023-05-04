@@ -7,7 +7,7 @@
 2. GUI (Ncurses.h)
   - Added guiTemp.cpp for testing purpose
   - To be implement: Offical GUI
-3. Check valid input  
+3. Check valid input (Ally) 
 4. Card Movement  (Alfred)
   - column to column  
   - column to stack  
