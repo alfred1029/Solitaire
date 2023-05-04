@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<vector>
 #include"guiTemp.h"
 #include"initTable.h"
 #include"move.h"
@@ -43,17 +44,20 @@ int main(){
             case 2:
                 // if valid == 2, move card to column
                 findTarget(table, ptr);
-                if (ptr.target == -1)
+                if (ptr.target == -1){
                     cout << "No possible move!" << endl;
                     break;
+                }
                 moveCard(table, cardMap, ptr);
                 break;
             case 3:
+                cout << "valid = 3" << endl;
                 // if valid == 3, move card to stack
                 findStack(table, ptr);
-                if (ptr.target == -1)
+                if (ptr.target == -1){
                     cout << "No possible move!" << endl;
                     break;
+                }
                 moveCard(table, cardMap, ptr);
                 break;
             default:

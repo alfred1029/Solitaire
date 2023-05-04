@@ -40,7 +40,9 @@ void flipStock(vector<vector<Card> > &table, Ptr &p){
         if (p.score < 100){
             p.score = 0;
         }
-        p.score -= 100;
+        else{
+            p.score -= 100;
+        }
     }
     ++p.move;
 }
@@ -49,7 +51,6 @@ void flipStock(vector<vector<Card> > &table, Ptr &p){
 
 void moveCard(vector<vector<Card> > &table, vector<CardMap> &cardMap, Ptr &p){
     // fill the taget column with the card(s) from the source column
-    cout << p.column << " " << p.row << " " << p.target << endl;
     if (p.column < 7){
         if (p.target == 8){
             // from column to stack
@@ -62,7 +63,7 @@ void moveCard(vector<vector<Card> > &table, vector<CardMap> &cardMap, Ptr &p){
             for (int i = p.row; i < table[p.column].size(); ++i){
                 table[p.target].push_back(table[p.column][i]);
                 // update the cardMap
-                cardMap[table[p.column][i].rank-1 + 13*table[p.column][i].suit] = {p.target, static_cast<int>(table[p.target].size())};
+                cardMap[table[p.column][i].rank-1 + 13*table[p.column][i].suit] = {p.target, static_cast<int>(table[p.target].size()-1)};
             }
         }
         // remove the card(s) from the source column
@@ -88,15 +89,18 @@ void moveCard(vector<vector<Card> > &table, vector<CardMap> &cardMap, Ptr &p){
             // from stock to column
             table[p.target].push_back(table[p.column][p.row]);
             // update the cardMap
-            cardMap[table[p.column][p.row].rank-1 + 13*table[p.column][p.row].suit] = {p.target, static_cast<int>(table[p.target].size())};
+            cardMap[table[p.column][p.row].rank-1 + 13*table[p.column][p.row].suit] = {p.target, static_cast<int>(table[p.target].size()-1)};
             p.score += 5;
         }
         // remove the card from the stock
         table[p.column].erase(table[p.column].begin() + p.row);
         // move the next pointer to the previous card in stock
+        for (int i = p.row; i < table[p.column].size(); ++i){
+            cardMap[table[p.column][i].rank-1 + 13*table[p.column][i].suit].row -= 1;
+        }
         --p.next;
         // the third previous card in stock is not shown
-        if (p.row - 3 >= 0){
+        if (p.next - 3 >= 0){
             table[p.column][p.row - 3].shown = true;
         }
     }

@@ -21,7 +21,7 @@ void printTable(vector<vector<Card>> &table, Ptr &p) {
     }
     cout << endl;
     for (int i = 0; i < 7; ++i) {
-        cout << "Column [" << i + 1 << "] : ";
+        cout << "Column [" << i << "] : ";
         for (int j = 0; j < table[i].size(); ++j) {
             if (table[i][j].shown == true) {
                 cout << getString(table[i][j]) << "  ";
