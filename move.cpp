@@ -40,7 +40,9 @@ void flipStock(vector<vector<Card> > &table, Ptr &p){
         if (p.score < 100){
             p.score = 0;
         }
-        p.score -= 100;
+        else{
+            p.score -= 100;
+        }
     }
     ++p.move;
 }
@@ -61,7 +63,7 @@ void moveCard(vector<vector<Card> > &table, vector<CardMap> &cardMap, Ptr &p){
             for (int i = p.row; i < table[p.column].size(); ++i){
                 table[p.target].push_back(table[p.column][i]);
                 // update the cardMap
-                cardMap[table[p.column][i].rank-1 + 13*table[p.column][i].suit] = {p.target, static_cast<int>(table[p.target].size())};
+                cardMap[table[p.column][i].rank-1 + 13*table[p.column][i].suit] = {p.target, static_cast<int>(table[p.target].size()-1)};
             }
         }
         // remove the card(s) from the source column
@@ -87,7 +89,7 @@ void moveCard(vector<vector<Card> > &table, vector<CardMap> &cardMap, Ptr &p){
             // from stock to column
             table[p.target].push_back(table[p.column][p.row]);
             // update the cardMap
-            cardMap[table[p.column][p.row].rank-1 + 13*table[p.column][p.row].suit] = {p.target, static_cast<int>(table[p.target].size())};
+            cardMap[table[p.column][p.row].rank-1 + 13*table[p.column][p.row].suit] = {p.target, static_cast<int>(table[p.target].size()-1)};
             p.score += 5;
         }
         // remove the card from the stock

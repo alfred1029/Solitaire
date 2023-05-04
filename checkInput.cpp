@@ -58,10 +58,16 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
 /* Function to find the stack */
 void findStack (vector<vector<Card>> &table, Ptr &p){
     p.target = -1;
+    cout << "target: " << p.target << endl;
+    cout << "column: " << p.column << endl;
+    cout << "row: " << p.row << endl;
+    cout << table[8][table[p.column][p.row].suit].rank << endl;
+    cout << table[p.column][p.row].rank << endl;
     // if the rank is one greater than card in stack with the same suit, set target to the stack
     if (table[8][table[p.column][p.row].suit].rank == table[p.column][p.row].rank - 1){
         p.target = 8;
     }
+    cout << "target: " << p.target << endl;
 }
 
 /* Function to find the target column */

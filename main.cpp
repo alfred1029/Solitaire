@@ -51,6 +51,7 @@ int main(){
                 moveCard(table, cardMap, ptr);
                 break;
             case 3:
+                cout << "valid = 3" << endl;
                 // if valid == 3, move card to stack
                 findStack(table, ptr);
                 if (ptr.target == -1){
