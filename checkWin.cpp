@@ -1,8 +1,17 @@
 //check if the game is won or there are no more available moves
+
+/*checkWin.cpp
+1. checkWin
+2. moveAvailable
+*/
+
+#include "card.h"
+#include "checkWin.h"
 #include<vector>
+
 using namespace std;
 
-//check if the game has won
+//Function to check if the game is won
 void checkWin(vector<vector<Card>> &table) {
   
   //if the top card of all stacks (column 8) is K, the game is won
@@ -15,7 +24,7 @@ void checkWin(vector<vector<Card>> &table) {
 }
 
 
-//check if there are no more available moves
+//Function to check if there are no more available moves
 void moveAvailable(vector<vector<Card>> &table) {
   
   //if there are unshown cards in the stock, cards can be drawn (i.e. moves are available)
