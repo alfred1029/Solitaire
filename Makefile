@@ -19,6 +19,6 @@ main: main.o initTable.o guiTemp.o move.o checkInput.o
 	g++ $(FLAGS) $^ -o $@
 
 clean:
-	rm -f main main.o initTable.o guiTemp.o move.o
+	rm -f main main.o initTable.o guiTemp.o move.o checkInput.o
 
 .PHONY: clean
