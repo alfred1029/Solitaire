@@ -28,7 +28,7 @@ void initRandomDeck(Card deck[]) {
 }
 
 // initialize a winnable deck (to be debugged)
-void initWinnableDeck(Card deck[]){
+void initWinnableDeck(Card deck[], string difficulty){
     ifstream fin;
     fin.open("winningDeck.txt");
     if (fin.fail()){
@@ -38,13 +38,21 @@ void initWinnableDeck(Card deck[]){
         int randomLine;
         random_device rd;
         mt19937 gen(rd());
-        uniform_int_distribution<> dis(1, 265);
+        uniform_int_distribution<> dis(1501, 1871);
+        if (difficulty == "easy"){
+            uniform_int_distribution<> dis(0, 200);
+        }
+        else if(difficulty == "medium"){
+            uniform_int_distribution<> dis(201, 800);
+        }
+        else if(difficulty == "hard"){
+            uniform_int_distribution<> dis(801, 1500);
+        }
         randomLine = dis(gen);
         string line;
         string word;
         int num = 0;
         // read the line
-        randomLine = 1;
         for (int i = 0; i < randomLine; ++i){
             getline(fin, line);
             // convert the line to a card
@@ -55,14 +63,24 @@ void initWinnableDeck(Card deck[]){
                 while (getline(iss, token, ',')){
                     // fill the card into the deck
                     num = stoi(token)-1;
+                    // the code initially change 1 to Ace, 2 to 2, 13 to King, etc.
+                    // but the winnableDeck.txt file is using 1 to 2, 2 to 3, 12 to K, 13 to Ace, etc.
+                    //Diamond, Club, Heart, Spade(to be changed)
+                    if (num / 13 == 0){
+                        num += 39;
+                    }else if (num / 13 == 3){
+                        num -= 39;
+                    }
+                    deck[j].suit = Card::Suit(num / 13); //0-12, 13-25, 26-38, 39-51 to (Spades, Clubs, Hearts, then Diamonds)
+                    num = num+1 % 13;
                     deck[j].rank = num % 13 + 1;
-                    deck[j].suit = Card::Suit(num / 13);
                     deck[j].shown = false;
                     j++;
                 }
             }
         }
     }
+    fin.close();
 }
 
 // initialize the game table
@@ -71,23 +89,25 @@ void initTable(vector<vector<Card>> &table, vector<CardMap> &cardMap, Card deck[
     // Fill the deck into game table, 7 columns (column 0 - 6), from 1 to 7 cards
     // The last card (size -1) of each column is shown
     // The filling method may need to be changed if we implement the winnable deck
-    for (int i = 0; i < 7; ++i) {
-        for (int j = 0; j <= i; ++j) {
+    // fill the remaining cards into the stock (column 7)
+
+    for(int i = 0; i<7; ++i){
+        for (int j = i; j < 7; ++j){
             // fill the card into the table
-            table[i].push_back(deck[i*(i+1)/2+j]);
+            table[j].push_back(deck[27-(7*i-i*(i+1)/2+j)]);
             // fill the cardMap with the card
-            cardMap[table[i].back().rank-1 + table[i].back().suit*13] = {i, j};
+            cardMap[table[j].back().rank-1 + table[j].back().suit*13] = {j,i};
             // show the last card
-            if (i == j) {
+            if (j == i){
                 table[i][j].shown = true;
             }
         }
     }
-    // fill the remaining cards into the stock (column 7)
+
     for (int i = 0; i < 24; ++i) {
-        table[7].push_back(deck[28+i]);
+        table[7].push_back(deck[i+28]);
         // fill the cardMap with the card
-        cardMap[deck[28+i].rank-1 + deck[28+i].suit*13] = {7, i};
+        cardMap[deck[i+28].rank-1 + deck[i+28].suit*13] = {7, i};
     }
     // Initialize the stack (column 8) as empty
     for (int i = 0; i < 4; ++i) {

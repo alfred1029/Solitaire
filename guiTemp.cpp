@@ -41,19 +41,19 @@ string getString(Card &t) {
     switch (t.suit) {
         case Card::Suit::Spade:
             // Spade character: ♠
-            card = "♠";
+            card = "S";
             break;
         case Card::Suit::Heart:
             // Heart character: ♥
-            card = "♥";
-            break;
-        case Card::Suit::Diamond:
-            // Diamond character: ♦
-            card = "♦";
+            card = "\033[1;31mH\033[0m";
             break;
         case Card::Suit::Club:
             // Club character: ♣
-            card = "♣";
+            card = "C";
+            break;
+        case Card::Suit::Diamond:
+            // Diamond character: ♦
+            card = "\033[1;31mD\033[0m";
             break;
     }
     switch (t.rank) {
