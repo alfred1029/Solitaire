@@ -101,6 +101,6 @@ int main(){
           break;
         }
     }
-    leaderboard(p.score);
+    leaderboard(ptr.score);
     return 0;
 }
