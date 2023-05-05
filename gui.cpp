@@ -1,55 +1,12 @@
 #include"card.h"
-#include"ncurses.h"
+#include "ncurses.h"
 #include"gui.h"
 #include <vector>
 #include <string>
 
 using namespace std;
 
-// This function will setup the windows
-void setupWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &input){
-    topStatus = newwin(1, 90, 0, 0);
-    // initialize the stock window with 16 rows and 10 columns, start at (2,0)
-    stock = newwin(16, 10, 2, 0);
-    // initialize the stack window with 20 rows and 10 columns, start at (2,80)
-    stack = newwin(20, 10, 2, 80);
-    // initialize the column window 0-6 with 36 rows and 10 columns each, start at (2,10)
-    for (int i = 0; i < 7; i++){
-        column[0] = newwin(36, 10, 2, (i+1)*10);
-    }
-    // initialize the bottom status window with 1 row and 90 columns, start at (38,0)
-    bottomStatus = newwin(1, 90, 38, 0);
-    // initialize the input window with 1 row and 90 columns, start at (39,0)
-    input = newwin(1, 90, 39, 0);
-}
 
-// This function will delete the windows
-void deleteWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &input){
-    delwin(topStatus);
-    delwin(stock);
-    delwin(stack);
-    for (int i = 0; i < 7; i++){
-        delwin(column[i]);
-    }
-    delwin(bottomStatus);
-    delwin(input);
-}
-
-// This function will draw the top part of the card
-// ╭─────╮
-// │7   ♦│ for 7 of Diamond
-void drawCardTop(Card &card, WINDOW * &window, int y){
-    // draw the top part of the card
-    // if the card is not shown, draw the dashed line
-    mvwprintw(window, y, 0, "+----+");
-    if(!card.shown){
-        mvwprintw(window, y+1, 0, "|    |");
-    }
-    // if the card is shown, draw the rank and suit
-    else{
-        mvwprintw(window, y+1, 0, "|%c  %c|", RANK[card.rank], SUIT[card.suit]);
-    }
-}
 
 // This function will draw the rest part of the card, for the card is not under another card
 // Pass the <vector<vector<Card>>> table, and the window to draw, the start position of y, the card

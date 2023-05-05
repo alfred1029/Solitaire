@@ -8,12 +8,12 @@
 
 using namespace std;
 
-static WINDOW *topStatus, *stock, *stack, *column[7], *bottomStatus, *input;
+//static WINDOW *topStatus, *stock, *stack, *column[7], *bottomStatus, *input;
 static char SUIT[4] = {'D', 'C', 'H', 'S'};
 static char RANK[14] = {' ', 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
 
-void setupWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &input);
-void deleteWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &input);
+//void setupWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &input);
+//void deleteWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &input);
 void drawCardTop(Card &card, WINDOW * &window, int y);
 void drawCardBottom(WINDOW * &window, int y);
 void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr);
