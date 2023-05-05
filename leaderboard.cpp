@@ -5,13 +5,11 @@
 #include "card.h"
 #include "leaderboard.h"
 
-void leaderboard(Ptr &p) {
+void leaderboard(&p) {
   
   ifstream oldScores;
   ofstream newScores;
   vector<int> temp;
-  
-  int oldScore;
   
   oldScores.open("scores.txt");
   
