@@ -31,6 +31,6 @@ main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o lea
 	g++ $(FLAGS) $^ -o $@
 
 clean:
-	rm -f main main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o
+	rm -f main main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o gui.o
 
 .PHONY: clean
