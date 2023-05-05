@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: AUTO COMPILER ERROR TEST--- Make and execute main
 
 on:
   push:
@@ -17,3 +17,5 @@ jobs:
       run: make clean
     - name: make main
       run: make main
+    - name: run main
+      run: ./main
