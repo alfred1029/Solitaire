@@ -36,7 +36,7 @@ Cheung Yan Shek, UID: 3036065575, Github username: namelessxxv
 
 Hong Hiu Shun, UID: 3036065422  
 
-Hui Lok Samuel, UID: 3036059980
+Hui Lok Samuel, UID: 3036059980, Github username: pithon
 
 Wong Wai Chung, UID: 3036068618, Github username: alfred1029
 
