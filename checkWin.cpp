@@ -42,6 +42,8 @@ void moveAvailable(vector<vector<Card>> &table) {
       if (table[i].size() > 0) {
         continue;
       }
+      
+      Card card1 = table[i][table[i].size() - 1];
 
       for (int j = 0; j < 9; j++) {
 
@@ -49,8 +51,7 @@ void moveAvailable(vector<vector<Card>> &table) {
         if (table[j].size() == 0) {
           continue;
         }
-
-        Card card1 = table[i][table[i].size() - 1];
+        
         Card card2 = table[j][table[j].size() - 1];
 
         //if card 1 and card 2 are opposite colosr and card 2's rank is one less than card 1's rank, they can be stacked
