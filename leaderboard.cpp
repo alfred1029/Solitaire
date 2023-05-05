@@ -7,7 +7,7 @@
 #include <algorithm>
 
 
-void leaderboard(&p) {
+void leaderboard(Ptr &p) {
   
   ifstream oldScores;
   ofstream newScores;
