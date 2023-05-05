@@ -36,7 +36,7 @@ void leaderboard(Ptr &p) {
   newScores.open("scores.txt");
   
   //update the top scores
-  for (int = 0; i < temp.size(); i++) {
+  for (int i = 0; i < temp.size(); i++) {
     newScores << temp[i] << endl;
   }
   
