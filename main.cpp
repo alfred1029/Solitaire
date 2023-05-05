@@ -12,15 +12,26 @@ using namespace std;
 
 // This is temporary main function for development of game functions
 int main(){
+
+    string difficulty;
+    cout << "Please select difficulty: easy, medium, hard, expert" << endl;
+    cin >> difficulty;
+    if (difficulty != "easy" && difficulty != "medium" && difficulty != "hard" && difficulty != "expert") {
+        cout << "Invalid difficulty!" << endl;
+        return 0;
+    }
+
     //store process
     vector<singleProcess> processes;
+
     // initialize table, cardMap, deck
     vector<vector<Card>> table(9);
     vector<CardMap> cardMap(52);
     Card * deck = new Card[52];
-    // randomize deck
-    initRandomDeck(deck);
+    // initialize a winnable deck (to be debbuged)
+    initWinnableDeck(deck, difficulty);
     initTable(table, cardMap, deck);
+    cout << "Deck initialized!" << endl;
     // free memory from deck
     delete [] deck;
     deck = nullptr;

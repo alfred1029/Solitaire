@@ -1,6 +1,6 @@
 /*  checkInput.cpp
     1.  checkValid
-    2.  findTarget    
+    2.  findTarget
     3.  findStack
     4.  convertCard
 */
@@ -36,7 +36,11 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
                 p.column = cardMap[card].column;
                 p.row = cardMap[card].row;
                 // valid = 2 means move card to column
-                valid = 2;
+                if (table[p.column][p.row].shown){
+                    valid = 2;
+                }else{
+                    valid = -1;
+                }
             }
             break;
         case 3:
@@ -49,7 +53,11 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
                 p.column = cardMap[card].column;
                 p.row = cardMap[card].row;
                 // valid = 3 means move card to stack
-                valid = 3;
+                if (table[p.column][p.row].shown){
+                    valid = 3;
+                }else{
+                    valid = -1;
+                }
             }
             break;
         case 4:
@@ -71,11 +79,6 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
 /* Function to find the stack */
 void findStack (vector<vector<Card>> &table, Ptr &p){
     p.target = -1;
-    cout << "target: " << p.target << endl;
-    cout << "column: " << p.column << endl;
-    cout << "row: " << p.row << endl;
-    cout << table[8][table[p.column][p.row].suit].rank << endl;
-    cout << table[p.column][p.row].rank << endl;
     // if the rank is one greater than card in stack with the same suit, set target to the stack
     if (table[8][table[p.column][p.row].suit].rank == table[p.column][p.row].rank - 1){
         p.target = 8;
