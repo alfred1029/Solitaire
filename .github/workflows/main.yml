@@ -1,4 +1,4 @@
-name: AUTO COMPILER: Make and execute main
+name: AUTO COMPILER ERROR TEST--- Make and execute main
 
 on:
   push:
