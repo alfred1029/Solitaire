@@ -12,7 +12,7 @@
 using namespace std;
 
 //Function to check if the game is won
-void checkWin(vector<vector<Card>> &table) {
+bool checkWin(vector<vector<Card>> &table) {
   
   //if the top cards of all stacks (column 8) are K, the game is won
   int count = 0;
@@ -40,7 +40,7 @@ void checkWin(vector<vector<Card>> &table) {
 
 
 //Function to check if there are no more available moves
-void moveAvailable(vector<vector<Card>> &table) {
+bool moveAvailable(vector<vector<Card>> &table) {
   
   //if there are unshown cards in the stock, cards can be drawn (i.e. moves are available)
   if (table[7].size() > 0) {
