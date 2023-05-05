@@ -1,4 +1,4 @@
-name: main program run
+name: AUTO COMPILER: Make and execute main
 
 on:
   push:
