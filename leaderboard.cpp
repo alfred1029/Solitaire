@@ -10,6 +10,7 @@
 void leaderboard(Ptr &p) {
   
   ifstream oldScores;
+  int oldScore;
   ofstream newScores;
   
   //create a vector to carry old and new scores to be sorted
