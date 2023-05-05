@@ -15,9 +15,10 @@ int main(){
     vector<vector<Card>> table(9);
     vector<CardMap> cardMap(52);
     Card * deck = new Card[52];
-    // randomize deck
-    initRandomDeck(deck);
+    // initialize a winnable deck (to be debbuged)
+    initWinnableDeck(deck);
     initTable(table, cardMap, deck);
+    cout << "Deck initialized!" << endl;
     // free memory from deck
     delete [] deck;
     deck = nullptr;
@@ -30,6 +31,7 @@ int main(){
     // game loop
     while (command != "e")
     {
+        cout << "Start!" << endl;
         // print table and ask for command
         printTable(table, ptr);
         // get command and check if it is valid

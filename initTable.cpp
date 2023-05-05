@@ -5,6 +5,8 @@
 #include <algorithm>    // for std::shuffle
 #include "card.h"       // for Card
 #include "initTable.h"  // for initTable
+#include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -22,9 +24,46 @@ void initRandomDeck(Card deck[]) {
     mt19937 g(rd());
     // shuffle the deck
     shuffle(deck, deck + 52, g);
+
 }
 
-// initialize a winnable deck (to be implemented)
+// initialize a winnable deck (to be debugged)
+void initWinnableDeck(Card deck[]){
+    ifstream fin;
+    fin.open("winningDeck.txt");
+    if (fin.fail()){
+        cout << "Error in opening file!\nPlease try again!" << endl;
+        exit(1);
+    }else{
+        int randomLine;
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> dis(1, 265);
+        randomLine = dis(gen);
+        string line;
+        string word;
+        int num = 0;
+        // read the line
+        randomLine = 1;
+        for (int i = 0; i < randomLine; ++i){
+            getline(fin, line);
+            // convert the line to a card
+            istringstream iss(line);
+            string token;
+            if( i == randomLine - 1){
+                int j = 0;
+                while (getline(iss, token, ',')){
+                    // fill the card into the deck
+                    num = stoi(token)-1;
+                    deck[j].rank = num % 13 + 1;
+                    deck[j].suit = Card::Suit(num / 13);
+                    deck[j].shown = false;
+                    j++;
+                }
+            }
+        }
+    }
+}
 
 // initialize the game table
 void initTable(vector<vector<Card>> &table, vector<CardMap> &cardMap, Card deck[]){
