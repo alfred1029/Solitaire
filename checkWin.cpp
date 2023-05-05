@@ -17,7 +17,7 @@ bool checkWin(vector<vector<Card>> &table) {
   //if the top cards of all stacks (column 7) are K, the game is won
   int count = 0;
   for (int i = 0; i < 4; i++) {
-    if (table[7][i].rank != 13) {
+    if (table[7][i].rank == 13) {
       count++;
     }
   }
