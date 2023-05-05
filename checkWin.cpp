@@ -43,7 +43,7 @@ bool checkWin(vector<vector<Card>> &table) {
 bool moveAvailable(vector<vector<Card>> &table) {
   
   //if there are unshown cards in the stock, cards can be drawn (i.e. moves are available)
-  if (table[7].size() > 0) {
+  if (table[8].size() > 0) {
     return true;
   }
   
