@@ -70,7 +70,7 @@ int main(){
                 //if valid == 4, redo the process
                 redo(table, ptr, cardMap, processes);
                 break;
-            //case 5:
+            case 5:
                 //if valid == 5, undo the process
                 undo(table, ptr, cardMap, processes);
                 break;
