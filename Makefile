@@ -1,4 +1,4 @@
-FLAGS = -g -std=c++11
+FLAGS = -g -std=c++11 -lncurses
 
 checkInput.o: checkInput.cpp checkInput.h redoUndo.h
 	g++ $(FLAGS) -c $<
@@ -31,6 +31,9 @@ main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o lea
 	g++ $(FLAGS) $^ -o $@ -lncurses
 
 clean:
-	rm -f main main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o gui.o
+	$(command) *.o *.exe main
+
+run: clean main
+	./main
 
 .PHONY: clean
