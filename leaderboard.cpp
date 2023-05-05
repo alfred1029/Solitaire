@@ -1,6 +1,8 @@
 //to store scores
 #include <fstream>
+#include <vector>
 #include <algorithm>
+#include "card.h"
 #include "leaderboard.h"
 
 void leaderboard(&p) {
