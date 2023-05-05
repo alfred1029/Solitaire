@@ -100,7 +100,10 @@ bool moveAvailable(vector<vector<Card>> &table) {
     if the cards have opposite colors and the rank of the top card is greater than the rank of the stack card by 1*/
     for (int i = 0; i < topCards.size(); i++) {
       for (int j = 0; j < stackCards.size(); j++) {
-        if (((topCards[i].suit +1)%2 == (stackCards[j].suit)%2) && (topCards[i].rank == stackCards[j].rank + 1)) {
+        if (topCards[i].rank == 1) {
+          return true;
+        }
+        elif (((topCards[i].suit +1)%2 == (stackCards[j].suit)%2) && (topCards[i].rank == stackCards[j].rank + 1)) {
           return true;
         }
       }
