@@ -25,16 +25,16 @@ bool checkWin(vector<vector<Card>> &table) {
     return true;
   }
   
-  //if all cards are shown (i.e. the bottom cards of all column are shown and there is no card in the stock)
-  if (table[8].size == 0) {
+  //if all cards are shown in columns (i.e. the bottom cards of all column are shown) and there are no cards in stock
+  if (table[8].size() == 0) {
     for (int i = 0; i < 7; i++) {
       if (table[i].size() != 0) {
         if (!table[i][0].shown) {
           return false;
         }
       }
-    }
     return true;
+    }
   }
 }
 
@@ -100,7 +100,10 @@ bool moveAvailable(vector<vector<Card>> &table) {
     if the cards have opposite colors and the rank of the top card is greater than the rank of the stack card by 1*/
     for (int i = 0; i < topCards.size(); i++) {
       for (int j = 0; j < stackCards.size(); j++) {
-        if (((topCards[i].suit +1)%2 == (stackCards[j].suit)%2) && (topCards[i].rank == stackCards[j].rank + 1)) {
+        if (topCards[i].rank == 1) {
+          return true;
+        }
+        elif (((topCards[i].suit +1)%2 == (stackCards[j].suit)%2) && (topCards[i].rank == stackCards[j].rank + 1)) {
           return true;
         }
       }
@@ -110,7 +113,7 @@ bool moveAvailable(vector<vector<Card>> &table) {
     the most recently drawn card from the stock can be moved to the top card of a column
     if the cards have opposite colors and the rank of the shown card is less than the rank of the top card by 1*/
     for (int i = 0; i < topCards.sizez(); i++) {
-      if (((stockCard.suit +1)%2 == (topCards[i].suit)%2) && (stockCard.rank == topCards[i].rank + 1)) {
+      if (((stockCard.suit +1)%2 == (topCards[i].suit)%2) && (stockCard.rank == topCards[i].rank - 1)) {
           return true;
       }
     }
@@ -119,7 +122,7 @@ bool moveAvailable(vector<vector<Card>> &table) {
     the most recently drawn card from the stock can be moved to the stack
     if the cards have opposite colors and the rank of the drawn card is less than the rank of the stack card by 1*/
     for (int i = 0; i < stackCards.sizez(); i++) {
-      if (((stockCard.suit +1)%2 == (stackCards[i].suit)%2) && (stockCard.rank == stackCards[i].rank + 1)) {
+      if (((stockCard.suit +1)%2 == (stackCards[i].suit)%2) && (stockCard.rank == stackCards[i].rank - 1)) {
           return true;
       }
     }
@@ -129,7 +132,7 @@ bool moveAvailable(vector<vector<Card>> &table) {
     if the cards have opposite colors and the rank of the shown card is less than the rank of the top card by 1*/
     for (int i = 0; i < stackCards.size(); i++) {
       for (int j = 0; j < topCards.size(); j++) {
-        if (((stackCards[i].suit +1)%2 == (topCards[j].suit)%2) && (stackCards[i].rank == topCards[j].rank + 1)) {
+        if (((stackCards[i].suit +1)%2 == (topCards[j].suit)%2) && (stackCards[i].rank == topCards[j].rank - 1)) {
           return true;
         }
       }

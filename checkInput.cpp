@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include "redoUndo.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ using namespace std;
 int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, string input){
     int card, valid = -1;
     if (input.substr(0, 2) == "10"){
-                input = 't' + input.substr(2); 
+        input = 't' + input.substr(2); 
     }
     switch (input.length()){
         case 1:
@@ -26,6 +27,7 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
                 // valid = 1 means flip deck
                 valid = 1;
             }
+
             break;
         case 2:
             // convert the string card to integer
@@ -57,6 +59,18 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
                 }else{
                     valid = -1;
                 }
+            }
+            break;
+        case 4:
+            if (tolower(input[0]) == 'r'){
+                // if input[0] == r
+                //valid = 4 means redo
+                valid = 4;
+            }
+            else if (tolower(input[0]) == 'u'){
+                //if input[0] == u
+                //valid = 5 means undo
+                valid = 5;
             }
             break;
     }
@@ -164,5 +178,3 @@ int convertCard (string card){
     }
     return rank -1 + suit * 13;
 }
-
-
