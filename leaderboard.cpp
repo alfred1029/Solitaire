@@ -11,6 +11,8 @@ void leaderboard(Ptr &p) {
   ofstream newScores;
   vector<int> temp;
   
+  int oldScore;
+  
   oldScores.open("scores.txt");
   
   //append old scores to the temp vector
