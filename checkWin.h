@@ -7,8 +7,8 @@
 using namespace std;
 
 //Function to check if the game is won
-void checkWin(vector<vector<Card>> &table);
+bool checkWin(vector<vector<Card>> &table);
 //Function to check if there are no more available moves
-void moveAvailable(vector<vector<Card>> &table);
+bool moveAvailable(vector<vector<Card>> &table);
 
 #endif
