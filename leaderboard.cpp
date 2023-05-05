@@ -5,7 +5,7 @@
 #include "card.h"
 #include "leaderboard.h"
 
-void leaderboard(&p) {
+void leaderboard(Ptr &p) {
   
   ifstream oldScores;
   ofstream newScores;
