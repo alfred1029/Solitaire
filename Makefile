@@ -1,6 +1,6 @@
 FLAGS = -g -std=c++11
 
-checkInput.o: checkInput.cpp checkInput.h
+checkInput.o: checkInput.cpp checkInput.h redoUndo.h
 	g++ $(FLAGS) -c $<
 
 initTable.o: initTable.cpp initTable.h card.h
@@ -12,13 +12,16 @@ guiTemp.o: guiTemp.cpp guiTemp.h card.h
 move.o: move.cpp move.h card.h
 	g++ $(FLAGS) -c $<
 
+redoUndo.o: redoUndo.cpp redoUndo.h card.h
+	g++ $(FLAGS) -c $<
+
 main.o: main.cpp initTable.h
 	g++ $(FLAGS) -c $<
 
-main: main.o initTable.o guiTemp.o move.o checkInput.o
+main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o
 	g++ $(FLAGS) $^ -o $@
 
 clean:
-	rm -f main main.o initTable.o guiTemp.o move.o checkInput.o
+	rm -f main main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o
 
 .PHONY: clean
