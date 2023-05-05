@@ -7,6 +7,8 @@
 #include "checkInput.h"
 #include "card.h"
 #include "redoUndo.h"
+#include "checkWin.h"
+#include "leaderboard.h"
 
 using namespace std;
 
@@ -78,6 +80,15 @@ int main(){
                 // if valid == -1, print invalid input
                 cout << "Invalid input!" << endl;
         }
-    } 
+        if (checkWin(table)) {
+          cout << "You win!" << endl;
+          break;
+        }
+        if (moveAvailable(table)) {
+          cout << "No available move." << endl;
+          break;
+        }
+    }
+    leaderboard(p.score);
     return 0;
 }
