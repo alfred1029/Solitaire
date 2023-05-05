@@ -25,13 +25,11 @@ bool checkWin(vector<vector<Card>> &table) {
     return true;
   }
   
-  //if all cards are shown (i.e. the bottom cards of all column are shown and there is no card in the stock)
-  if (table[8].size == 0) {
-    for (int i = 0; i < 7; i++) {
-      if (table[i].size() != 0) {
-        if (!table[i][0].shown) {
-          return false;
-        }
+  //if all cards are shown in columns (i.e. the bottom cards of all column are shown)
+  for (int i = 0; i < 7; i++) {
+    if (table[i].size() != 0) {
+      if (!table[i][0].shown) {
+        return false;
       }
     }
     return true;
