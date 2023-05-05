@@ -36,6 +36,7 @@ bool checkWin(vector<vector<Card>> &table) {
     return true;
     }
   }
+  return false;
 }
 
 
