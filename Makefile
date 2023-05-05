@@ -1,4 +1,4 @@
-FLAGS = -std=c++11
+FLAGS = -g -std=c++11
 
 checkInput.o: checkInput.cpp checkInput.h
 	g++ $(FLAGS) -c $<
@@ -15,10 +15,10 @@ move.o: move.cpp move.h card.h
 main.o: main.cpp initTable.h
 	g++ $(FLAGS) -c $<
 
-main: main.o initTable.o guiTemp.o move.o
+main: main.o initTable.o guiTemp.o move.o checkInput.o
 	g++ $(FLAGS) $^ -o $@
 
 clean:
-	rm -f main main.o initTable.o guiTemp.o move.o
+	rm -f main main.o initTable.o guiTemp.o move.o checkInput.o
 
 .PHONY: clean

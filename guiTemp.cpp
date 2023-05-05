@@ -6,8 +6,8 @@
 using namespace std;
 
 // GUI for testing
-void printTable(vector<vector<Card>> &table, int move = 0, int score = 0) {
-    cout << "Move: " << move << "       Score: " << score << endl;
+void printTable(vector<vector<Card>> &table, Ptr &p) {
+    cout << "Move: " << p.move << "       Score: " << p.score << endl;
     cout << "Stack: ";
     for (int i = 0; i < 4; ++i){
             cout << getString(table[8][i]) << "  ";
@@ -21,7 +21,7 @@ void printTable(vector<vector<Card>> &table, int move = 0, int score = 0) {
     }
     cout << endl;
     for (int i = 0; i < 7; ++i) {
-        cout << "Column [" << i + 1 << "] : ";
+        cout << "Column [" << i << "] : ";
         for (int j = 0; j < table[i].size(); ++j) {
             if (table[i][j].shown == true) {
                 cout << getString(table[i][j]) << "  ";

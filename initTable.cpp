@@ -47,6 +47,8 @@ void initTable(vector<vector<Card>> &table, vector<CardMap> &cardMap, Card deck[
     // fill the remaining cards into the stock (column 7)
     for (int i = 0; i < 24; ++i) {
         table[7].push_back(deck[28+i]);
+        // fill the cardMap with the card
+        cardMap[deck[28+i].rank-1 + deck[28+i].suit*13] = {7, i};
     }
     // Initialize the stack (column 8) as empty
     for (int i = 0; i < 4; ++i) {

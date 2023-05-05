@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<vector>
 #include"guiTemp.h"
 #include"initTable.h"
 #include"move.h"
@@ -10,44 +11,54 @@ using namespace std;
 
 // This is temporary main function for development of game functions
 int main(){
-    // initialize table, cardMap, deck, move, score
+    // initialize table, cardMap, deck
     vector<vector<Card>> table(9);
     vector<CardMap> cardMap(52);
     Card * deck = new Card[52];
-    int move = 0, score = 0;
     // randomize deck
     initRandomDeck(deck);
     initTable(table, cardMap, deck);
+    // free memory from deck
+    delete [] deck;
+    deck = nullptr;
+    // Ptr p to store the information of the table
     // command to store user input
     // valid to check if command is valid and pass it to corresponding function
-    // column and row indicate point which card
+    Ptr ptr;
     string command;
-    int valid, column, row;
+    int valid;
     // game loop
     while (command != "e")
     {
         // print table and ask for command
-        printTable(table, move, score);
-        cout << "Please enter command: ";
+        printTable(table, ptr);
         // get command and check if it is valid
         cin >> command;
-        valid = checkValid(table, cardMap, column, row, command);
+        valid = checkValid(table, cardMap, ptr, command);
         // if valid, pass it to corresponding function
         switch (valid){
             case 1:
                 // if valid == 1, flip the stock deck
-                flipStock(table);
-                ++move;
+                flipStock(table, ptr);
                 break;
             case 2:
                 // if valid == 2, move card to column
-                moveCard(table, cardMap, column, row, findTarget(table, column, row));
-                ++move;
+                findTarget(table, ptr);
+                if (ptr.target == -1){
+                    cout << "No possible move!" << endl;
+                    break;
+                }
+                moveCard(table, cardMap, ptr);
                 break;
             case 3:
+                cout << "valid = 3" << endl;
                 // if valid == 3, move card to stack
-                moveCard(table, cardMap, column, row, findStack(table, column, row));
-                ++move;
+                findStack(table, ptr);
+                if (ptr.target == -1){
+                    cout << "No possible move!" << endl;
+                    break;
+                }
+                moveCard(table, cardMap, ptr);
                 break;
             default:
                 // if valid == -1, print invalid input

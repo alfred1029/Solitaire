@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void printTable(vector<vector<Card>> &table, int move, int score);
+void printTable(vector<vector<Card>> &table, Ptr &p);
 string getString(Card &t);
 
 #endif
