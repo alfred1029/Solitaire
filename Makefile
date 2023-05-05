@@ -1,4 +1,4 @@
-FLAGS = -g -std=c++11 -lncursesw
+FLAGS = -g -std=c++11 -lncurses
 
 checkInput.o: checkInput.cpp checkInput.h redoUndo.h
 	g++ $(FLAGS) -c $<
