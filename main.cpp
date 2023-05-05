@@ -28,24 +28,38 @@ int main(){
     // command to store user input
     // valid to check if command is valid and pass it to corresponding function
     Ptr ptr;
-    string command;
+    string command="000", previousCommand="000";
     int valid;
+    //save the initial process
+    saveProcess(table, ptr, cardMap, processes);
+    cout << processes.size() << endl;
     // game loop
     while (command != "e")
     {
-        //save process
-        saveProcess(table, ptr, cardMap, processes);
         // print table and ask for command
         printTable(table, ptr);
         // get command and check if it is valid
         cin >> command;
+        cout << command << " "<<previousCommand<<endl;
+        //check if command is valid
         valid = checkValid(table, cardMap, ptr, command);
+
+        //detect command and previous command
+        if (detectPreviousCommand(command, previousCommand)){
+            //delete exceed process
+            deleteProcess(table,ptr,cardMap,processes); 
+            cout << "delete succeed" << endl;
+        }
+
+        cout << "before move++"<<ptr.move<<' '<<processes.size()<<endl;
+
         // if valid, pass it to corresponding function
         switch (valid){
             case 1:
                 // if valid == 1, flip the stock deck
-                flipStock(table, ptr);
-                deleteProcess(table, ptr, cardMap, processes);
+                flipStock(table, ptr);//ptr.move++
+                //save process
+                saveProcess(table, ptr, cardMap, processes);
                 break;
             case 2:
                 // if valid == 2, move card to column
@@ -54,7 +68,9 @@ int main(){
                     cout << "No possible move!" << endl;
                     break;
                 }
-                moveCard(table, cardMap, ptr);
+                moveCard(table, cardMap, ptr);//ptr.move++
+                //save process
+                saveProcess(table, ptr, cardMap, processes);
                 break;
             case 3:
                 cout << "valid = 3" << endl;
@@ -64,20 +80,28 @@ int main(){
                     cout << "No possible move!" << endl;
                     break;
                 }
-                moveCard(table, cardMap, ptr);
+                moveCard(table, cardMap, ptr);//move++
+                //save process
+                saveProcess(table, ptr, cardMap, processes);
                 break;
             case 4:
                 //if valid == 4, redo the process
-                redo(table, ptr, cardMap, processes);
+                if(ptr.move <processes.size())
+                    redo(table, ptr, cardMap, processes);
+                cout<<"redo successful!"<<endl;
                 break;
             case 5:
                 //if valid == 5, undo the process
-                undo(table, ptr, cardMap, processes);
+                if(ptr.move >= 0)
+                    undo(table, ptr, cardMap, processes);
+                cout<<"undo successful!"<<endl;
                 break;
             default:
                 // if valid == -1, print invalid input
                 cout << "Invalid input!" << endl;
         }
+        cout<<"after move++"<<ptr.move<<' '<<processes.size()<<endl;
+        previousCommand = command;
     } 
     return 0;
 }

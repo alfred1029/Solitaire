@@ -8,6 +8,6 @@
 
 using namespace std;
 
-void leaderboard(Ptr &p);
+void leaderboard(&p);
 
 #endif
