@@ -52,6 +52,6 @@ void initTable(vector<vector<Card>> &table, vector<CardMap> &cardMap, Card deck[
     }
     // Initialize the stack (column 8) as empty
     for (int i = 0; i < 4; ++i) {
-        table[8].push_back({0, Card::Suit(i), false});
+        table[8].push_back({0, Card::Suit(i), true});
     }
 }
