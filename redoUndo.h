@@ -12,7 +12,7 @@ struct singleProcess{
     Ptr ptr;
 };
 
-
+bool detectPreviousCommand(string command, string previousCommand);
 void redo(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap, vector<singleProcess> &processes);
 void undo(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap, vector<singleProcess> &processes);
 void saveProcess(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap, vector<singleProcess> &processes);

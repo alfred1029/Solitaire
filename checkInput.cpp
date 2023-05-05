@@ -10,7 +10,6 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include "redoUndo.h"
 
 using namespace std;
 
@@ -62,12 +61,12 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
             }
             break;
         case 4:
-            if (tolower(input[0]) == 'r'){
+            if (input == "redo"){
                 // if input[0] == r
                 //valid = 4 means redo
                 valid = 4;
             }
-            else if (tolower(input[0]) == 'u'){
+            else if (input == "undo"){
                 //if input[0] == u
                 //valid = 5 means undo
                 valid = 5;

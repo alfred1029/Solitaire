@@ -45,6 +45,7 @@ void leaderboard(Ptr &p) {
   
   //append the top scores to the new leaderboard
   for (int i = 0; i < temp.size(); i++) {
+
     newScores << temp[i] << endl;
   }
   

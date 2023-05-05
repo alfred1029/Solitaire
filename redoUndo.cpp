@@ -4,7 +4,20 @@
 #include "card.h" //for Card
 #include "redoUndo.h" // singleProcess
 
-
+bool detectPreviousCommand(string command, string previousCommand){
+    if(previousCommand == "undo" && (command != "redo" && command != "undo")){
+        //going to delete exceed process
+        return true;
+    }
+    else if(previousCommand == "redo" && (command != "redo" && command != "undo")){
+        //going to delete exceed process
+        return true;
+    }      
+    else{
+        //not to delete exceed process
+        return false;
+    }
+}
 void saveProcess(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap, vector<singleProcess> &processes){
     singleProcess newProcess;
     newProcess.table = table;
@@ -15,8 +28,8 @@ void saveProcess(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap, 
 
 
 void deleteProcess(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap, vector<singleProcess> &processes){
-    int oldStep = processes.size() - p.move + 1;
-    for(int i=p.move; i<p.move+oldStep; i++){
+    int oldStep = processes.size() - p.move - 1;
+    for(int i=0; i<oldStep; i++){
         processes.pop_back();
     }
     
@@ -32,7 +45,7 @@ void undo(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap, vector<
 
 
 void redo(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap, vector<singleProcess> &processes){
-    int move = p.move + 1;
+    int move = p.move+1;
     table = processes[move].table;
     p = processes[move].ptr;
     cardMap = processes[move].cardMap;
