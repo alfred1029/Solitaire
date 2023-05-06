@@ -1,9 +1,9 @@
 # ENGG1340 project group 69
 ## To do list
 
-1. Deck initialization  (Random init - DONE)
-  - Please refer to card.h, initTable.cpp 
-  - To be implement: import from winning_deck_result.csv (3 difficulty levels)
+1. Deck initialization  (Random init, Import Winnable Deck) 
+  - Random init  
+  - Import Winnable Deck
 2. GUI (Ncurses.h)
   - Added guiTemp.cpp for testing purpose
   - To be implement: Offical GUI
@@ -13,18 +13,13 @@
   - column to stack  
   - deck to column  
   - deck to stack  
-5. Save load undo redo (undo redo done)
-6. File input output  
-7. Check win/ no more available move  (Ally)
-8. Leaderboard  
-9. Score  
+5. undo redo (undo redo done)
+6. Save load  
+7. File input output  
+8. Check win/ no more available move  (Ally)  
+9. Leaderboard  
+10. Score  
 
-(Optional)
-
-10. Cursor Input  
-11. Hint of next move  
-12. Check initial game winable  
-http://bitly.ws/3Vy7  
 
 ## Game description
 ## Game rules
