@@ -22,19 +22,24 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
     switch (input.length()){
         case 1:
             // if input == 'f', flip the stock
-            if (tolower(input[0]) == 'f'){
+            if (input[0] == 'f'){
                 // valid = 1 means flip deck
                 valid = 1;
             }
-            else if (tolower(input[0]) == 'r'){
+            else if (input[0] == 'r'){
                 // if input[0] == r
                 //valid = 4 means redo
                 valid = 4;
             }
-            else if (tolower(input[0]) == 'u'){
+            else if (input[0] == 'u'){
                 //if input[0] == u
                 //valid = 5 means undo
                 valid = 5;
+            }
+            else if (input[0] == 'e'){
+                // if input[0] == e
+                // valid = 6 means exit
+                valid = 6;
             }
             break;
         case 2:
@@ -67,7 +72,7 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
             }   
             break;
         case 3:
-            if (tolower(input[2]) != 's')
+            if (input[2] != 's')
                 break; 
             // if input[2] == s
             card = convertCard(input);
