@@ -2,35 +2,11 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include <sstream>
 #include <menu.h>
 
 void printLoad(WINDOW * &window);
 void printLeaderboard(WINDOW * &window);
 void printAbout(WINDOW * &window);
-
-void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color)
-{	int length, x, y;
-	float temp;
-
-	if(win == NULL)
-		win = stdscr;
-	getyx(win, y, x);
-	if(startx != 0)
-		x = startx;
-	if(starty != 0)
-		y = starty;
-	if(width == 0)
-		width = 80;
-
-	length = strlen(string);
-	temp = (width - length)/ 2;
-	x = startx + (int)temp;
-	wattron(win, color);
-	mvwprintw(win, y, x, "%s", string);
-	wattroff(win, color);
-	refresh();
-}
 
 // Print the logo
 void printLogo(WINDOW * &window) {
@@ -73,12 +49,6 @@ void printBackground(WINDOW * &window) {
 
 // Print the menu
 void printMenu(WINDOW * &window) {
-    /*/ Print a menu with start, load, leaderboard, about, and quit buttons aligned vertically
-    std::string menu[5] = {"Start", "Load", "Leaderboard", "About", "Quit"};
-    for (int i = 0; i < 5; ++i) {
-        mvwprintw(window, i*3+1, 0, menu[i].c_str());
-        wrefresh(window);
-    }*/
 
     #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
     #define CTRLD 	4
@@ -108,7 +78,8 @@ void printMenu(WINDOW * &window) {
         noecho();
 	keypad(stdscr, TRUE);
 	init_pair(1, COLOR_RED, COLOR_BLACK);
-
+    mvprintw(LINES - 2, 1, "ENGG1340 Project");
+    wrefresh(window);
 	/* Create items */
         n_choices = ARRAY_SIZE(choices);
         my_items = (ITEM **)calloc(n_choices, sizeof(ITEM *));
@@ -136,7 +107,6 @@ void printMenu(WINDOW * &window) {
 	//mvwaddch(window, 2, 0, ACS_LTEE);
 	//mvwhline(window, 2, 1, ACS_HLINE, 38);
 	//mvwaddch(window, 2, 39, ACS_RTEE);
-	mvprintw(LINES - 2, 0, "F3 to exit");
 	wrefresh(window);
         
 	/* Post the menu */
@@ -186,8 +156,18 @@ void printMenu(WINDOW * &window) {
             else if (userInput==4) {
                 // quit
                 // clear the screen
+                unpost_menu(my_menu);
+                free_menu(my_menu);
+                for(int i = 0; i < n_choices; ++i)
+                    free_item(my_items[i]);
+                werase(window);
                 wclear(window);
-                // print the menu
+                wrefresh(window);
+                delwin(window);
+	            endwin();
+                refresh();
+                erase();
+                clear();
                 exit(0);
             }
         }
@@ -240,7 +220,7 @@ int printDifficulty(WINDOW * &window){
         set_menu_format(my_menu, 5, 1);
         set_menu_sub(my_menu, derwin(window, 12, 38, 3, 1));
         set_menu_mark(my_menu, "   ");
-	mvprintw(LINES - 2, 0, "F3 to exit");
+	mvprintw(LINES - 2, 1, "ENGG1340 Project");
 	refresh();
 	post_menu(my_menu);
 	wrefresh(window);
@@ -286,12 +266,16 @@ void printLeaderboard(WINDOW * &window) {
     std::ifstream fin;
     fin.open("leaderboard.txt");
     std::string line;
-    while (getline(fin, line)) {
-        mvwprintw(window, 0, 0, line.c_str());
+    // print line by line
+    int i=0;
+    start_color();
+    while (getline(fin, line) && i<15){
+        mvwprintw(window, i, 0, line.c_str());
+        i++;
+        }
         wrefresh(window);
-    }
+    // close the file
     fin.close();
-    wrefresh(window);
 }
 
 void printAbout(WINDOW * &window) {
@@ -299,10 +283,14 @@ void printAbout(WINDOW * &window) {
     std::ifstream fin;
     fin.open("about.txt");
     std::string line;
-    while (getline(fin, line)) {
-        mvwprintw(window, 0, 0, line.c_str());
+    // print line by line
+    int i=0;
+    start_color();
+    while (getline(fin, line) && i<15){
+        mvwprintw(window, i, 0, line.c_str());
+        i++;
+        }
         wrefresh(window);
-    }
+    // close the file
     fin.close();
-    wrefresh(window);
 }
