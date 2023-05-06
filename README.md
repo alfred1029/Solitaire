@@ -13,7 +13,7 @@
   - column to stack  
   - deck to column  
   - deck to stack  
-5. Save load undo redo  (Billy/temp)
+5. Save load undo redo (undo redo done)
 6. File input output  
 7. Check win/ no more available move  (Ally)
 8. Leaderboard  
