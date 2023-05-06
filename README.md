@@ -99,6 +99,19 @@ When the game ends, the 10 highest historical scores are read from the text file
 Program functions are stored separately in different files, including “checkInput.cpp”, “checkWin.cpp”, “initTable.cpp”, “leaderboard.cpp”, “main.cpp”, “move.cpp”, “randomPosition.cpp”, etc. 
 
 ## Used C/C++ library list
+
+- #include <iostream>
+- #include <vector>
+- # include <string>
+- #include <map>
+- #include <ncurses.h>
+- #include <menu.h>
+- #include <random>
+- #include <algorithm>
+- #include <sstream>
+- #include <fstream>
+- #inclulde <locale.h>
+
 ## Compilation and execution instruction
 ## Group members
 Cheung Yan Shek, UID: 3036065575, Github username: namelessxxv
