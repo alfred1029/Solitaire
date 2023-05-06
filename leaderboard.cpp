@@ -10,6 +10,7 @@
 void leaderboard(Ptr &p) {
   
   ifstream oldScores;
+  int oldScore;
   ofstream newScores;
   
   //create a vector to carry old and new scores to be sorted
@@ -45,6 +46,7 @@ void leaderboard(Ptr &p) {
   
   //append the top scores to the new leaderboard
   for (int i = 0; i < temp.size(); i++) {
+
     newScores << temp[i] << endl;
   }
   
