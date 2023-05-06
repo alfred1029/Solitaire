@@ -6,7 +6,7 @@
         2. move card(s) from column to stack
         3. move card(s) from stock to column
         4. move card(s) from stock to stack
-        
+        5. move card(s) from stack to column
 */
 #include "card.h"
 #include "move.h"
@@ -118,5 +118,5 @@ void moveCard(vector<vector<Card> > &table, vector<CardMap> &cardMap, Ptr &p){
             table[p.column][p.row - 3].shown = true;
         }
     }
-    ++p.move;    
+    ++p.move;
 }
