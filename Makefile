@@ -1,4 +1,4 @@
-FLAGS = -g -std=c++11
+FLAGS = -g -std=c++11 -lncurses
 ifeq ($(OS),Windows_NT)
     command := del /F /Q
 else
