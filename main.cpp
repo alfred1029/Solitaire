@@ -133,16 +133,66 @@ int main(){
     //move the cursor to the input window
     wmove(inputWindow, 0, 0);
     //get user input
-    wgetstr(inputWindow, input);
+    getch();
 
-    while (input != "e")
+    while (command == "exit")
     {
         //move the cursor to the input window
-         wmove(inputWindow, 0, 0);
+        wmove(inputWindow, 0, 0);
         //get user input
-         wgetstr(inputWindow, input);
+        wgetstr(inputWindow, input);
 
-        
+        command = input;
+
+        valid = checkValid(table, cardMap, ptr, input);
+/*
+        switch (valid){
+            case 1:
+                // if valid == 1, flip the stock deck
+                flipStock(table, ptr);//ptr.move++
+                //save process
+                saveProcess(table, ptr, cardMap, processes);
+                break;
+            case 2:
+                // if valid == 2, move card to column
+                findTarget(table, ptr);
+                if (ptr.target == -1){
+                    std::cout << "No possible move!" << endl;
+                    break;
+                }
+                moveCard(table, cardMap, ptr);//ptr.move++
+                //save process
+                saveProcess(table, ptr, cardMap, processes);
+                break;
+            case 3:
+                std::cout << "valid = 3" << endl;
+                // if valid == 3, move card to stack
+                findStack(table, ptr);
+                if (ptr.target == -1){
+                    std::cout << "No possible move!" << endl;
+                    break;
+                }
+                moveCard(table, cardMap, ptr);//move++
+                //save process
+                saveProcess(table, ptr, cardMap, processes);
+                break;
+            case 4:
+                //if valid == 4, redo the process
+                if(ptr.move <processes.size())
+                    redo(table, ptr, cardMap, processes);
+                std::cout<<"redo successful!"<<endl;
+                break;
+            case 5:
+                //if valid == 5, undo the process
+                if(ptr.move >= 0)
+                    undo(table, ptr, cardMap, processes);
+                std::cout<<"undo successful!"<<endl;
+                break;
+            default:
+                // if valid == -1, print invalid input
+                std::cout << "Invalid input!" << endl;
+        }
+        */
  /*       
         // print table and ask for command
         printTable(table, ptr);
@@ -220,7 +270,7 @@ int main(){
         delwin(column[i]);
     }
     delwin(bottomStatus);
-    delwin(input);
+    delwin(inputWindow);
     endwin();
 
     return 0;
