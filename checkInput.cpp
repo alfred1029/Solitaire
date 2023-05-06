@@ -26,7 +26,16 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
                 // valid = 1 means flip deck
                 valid = 1;
             }
-
+            else if (tolower(input[0]) == 'r'){
+                // if input[0] == r
+                //valid = 4 means redo
+                valid = 4;
+            }
+            else if (tolower(input[0]) == 'u'){
+                //if input[0] == u
+                //valid = 5 means undo
+                valid = 5;
+            }
             break;
         case 2:
             // convert the string card to integer
@@ -60,17 +69,7 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
                 }
             }
             break;
-        case 4:
-            if (input == "redo"){
-                // if input[0] == r
-                //valid = 4 means redo
-                valid = 4;
-            }
-            else if (input == "undo"){
-                //if input[0] == u
-                //valid = 5 means undo
-                valid = 5;
-            }
+        default:
             break;
     }
     return valid;
@@ -83,7 +82,6 @@ void findStack (vector<vector<Card>> &table, Ptr &p){
     if (table[8][table[p.column][p.row].suit].rank == table[p.column][p.row].rank - 1){
         p.target = 8;
     }
-    cout << "target: " << p.target << endl;
 }
 
 /* Function to find the target column */

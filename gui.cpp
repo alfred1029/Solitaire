@@ -3,6 +3,7 @@
 #include"gui.h"
 #include <vector>
 #include <string>
+#include "checkInput.h"
 
 using namespace std;
 
@@ -41,8 +42,9 @@ void drawCardBottom(WINDOW * &window, int y){
 }
 void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
     // draw the stock deck
+    wclear(window);
     int y = 0;
-    Card card = {0,Card::Suit(0),false};
+    Card card = {0,Card::Suit(1),false};
     drawCardTop(card, window, y);
     drawCardBottom(window, y+2);
     y += 5;
@@ -52,9 +54,11 @@ void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
             y += 2;
         }
     }
-    drawCardBottom(window, y);
+    if (y>5){
+        drawCardBottom(window, y);
+    }
     // refresh the stock window
-    
+    wrefresh(window);
 }
 
 // This function will draw the stack deck
@@ -78,6 +82,7 @@ void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
 // ╰────╯
 void updateStack(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
     // draw the stack deck
+    wclear(window);
     int y = 0;
     for (int i = 0; i < 4; ++i){
         drawCardTop(table[8][i], window, y);
@@ -102,6 +107,7 @@ void updateStack(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
 
 void updateColumn(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr, int column){
     // draw the column deck
+    wclear(window);
     int y = 0;
     Card card = {0,Card::Suit(0),false};
     for (int i = 0; i < table[column].size(); ++i){
@@ -121,6 +127,7 @@ void updateColumn(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr, int 
 void updateTopStatus(WINDOW * &window, Ptr &ptr){
     // draw the top status window
     // draw the move and score
+    wclear(window);
     mvwprintw(window, 0, 0, "Move: %d", ptr.move);
     mvwprintw(window, 0, 20, "Score: %d", ptr.score);
     // refresh the top status window
@@ -131,6 +138,7 @@ void updateTopStatus(WINDOW * &window, Ptr &ptr){
 // Pass the message string
 
 void updateBottomStatus(WINDOW * &window, string message){
+    wclear(window);
     // draw the bottom status window
     mvwprintw(window, 0, 0, message.c_str());
     // refresh the bottom status window
@@ -143,7 +151,30 @@ void updateBottomStatus(WINDOW * &window, string message){
 
 string listenInput(WINDOW * &window){
     // listen to the keyboard input
-    char input[100];
-    wgetstr(window, input);
-    return input;
+    wclear(window);
+    char input;
+    string temp;
+    for (int i = 1; i < 4; ++i){
+        input = wgetch(window);
+        temp += input;
+        wdelch(window);
+        switch (i)
+        {
+            case 1:
+                if (temp == "f" || temp == "e" || temp == "u" || temp == "u")
+                    return temp;
+                break;
+            case 2:
+                if (convertCard(temp) != -1)
+                    return temp;
+                break;
+            case 3:
+                return temp;
+            default:
+                break;
+        }
+    }
+
+    wrefresh(window);
+    return temp;
 }

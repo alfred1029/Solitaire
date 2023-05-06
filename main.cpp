@@ -16,7 +16,7 @@ using namespace std;
 void setupWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &inputWindow){
     topStatus = newwin(1, 90, 0, 0);
     // initialize the stock window with 16 rows and 10 columns, start at (2,0)
-    stock = newwin(16, 10, 2, 0);
+    stock = newwin(16, 10, 2, 1);
     // initialize the stack window with 20 rows and 10 columns, start at (2,80)
     stack = newwin(20, 10, 2, 80);
     // initialize the column window 0-6 with 36 rows and 10 columns each, start at (2,10)
@@ -69,7 +69,7 @@ int main(){
     // command to store user input
     // valid to check if command is valid and pass it to corresponding function
     Ptr ptr;
-    string command="000", previousCommand="000", message="Welcome my friend!";
+    string command="000", message="Welcome my friend! Please enter command:";
     char input[100];
     int valid;
     //save the initial process
@@ -111,7 +111,6 @@ int main(){
     bottomStatus = newwin(1, 90, 38, 0);
     // initialize the input window with 1 row and 90 columns, start at (39,0)
     inputWindow = newwin(1, 90, 39, 0);
-    noecho();
     // refresh the windows
     refresh();
 
@@ -129,70 +128,119 @@ int main(){
     updateBottomStatus(bottomStatus, message);
 
     //cursor shown
-    echo();
-    //move the cursor to the input window
-    wmove(inputWindow, 0, 0);
-    //get user input
-    getch();
 
-    while (command == "exit")
-    {
-        //move the cursor to the input window
-        wmove(inputWindow, 0, 0);
+    command = listenInput(inputWindow);
+
+    while (command != "e" )
+    {   
         //get user input
-        wgetstr(inputWindow, input);
 
-        command = input;
-
-        valid = checkValid(table, cardMap, ptr, input);
-/*
+        valid = checkValid(table, cardMap, ptr, command);
+        // if command is valid, execute the command
         switch (valid){
             case 1:
                 // if valid == 1, flip the stock deck
                 flipStock(table, ptr);//ptr.move++
                 //save process
                 saveProcess(table, ptr, cardMap, processes);
+                updateStock(table, stock, ptr);
+                updateTopStatus(topStatus, ptr);
                 break;
             case 2:
                 // if valid == 2, move card to column
                 findTarget(table, ptr);
                 if (ptr.target == -1){
-                    std::cout << "No possible move!" << endl;
+                    message = "No possible move! Please enter command:";
+                    updateBottomStatus(bottomStatus, message);
                     break;
                 }
                 moveCard(table, cardMap, ptr);//ptr.move++
                 //save process
                 saveProcess(table, ptr, cardMap, processes);
+                updateTopStatus(topStatus, ptr);
+                if (ptr.target == 8)
+                    updateStack(table, stack, ptr);
+                else
+                    updateColumn(table, column[ptr.target], ptr, ptr.target);
+                if (ptr.column == 7)
+                    updateStock(table, stock, ptr);
+                else
+                    updateColumn(table, column[ptr.column], ptr, ptr.column);
                 break;
             case 3:
-                std::cout << "valid = 3" << endl;
                 // if valid == 3, move card to stack
                 findStack(table, ptr);
                 if (ptr.target == -1){
-                    std::cout << "No possible move!" << endl;
+                    message = "No possible move! Please enter command:";
+                    updateBottomStatus(bottomStatus, message);
                     break;
                 }
                 moveCard(table, cardMap, ptr);//move++
                 //save process
                 saveProcess(table, ptr, cardMap, processes);
+                updateTopStatus(topStatus, ptr);
+                if (ptr.target == 8)
+                    updateStack(table, stack, ptr);
+                else
+                    updateColumn(table, column[ptr.target], ptr, ptr.target);
+                if (ptr.column == 7)
+                    updateStock(table, stock, ptr);
+                else
+                    updateColumn(table, column[ptr.column], ptr, ptr.column);
                 break;
             case 4:
                 //if valid == 4, redo the process
-                if(ptr.move <processes.size())
+                if(ptr.move <processes.size()){
                     redo(table, ptr, cardMap, processes);
-                std::cout<<"redo successful!"<<endl;
+                    updateTopStatus(topStatus, ptr);
+                    // update the stock window
+                    updateStock(table, stock, ptr);
+                    // update the column window
+                    for (int i = 0; i < 7; i++){
+                        updateColumn(table, column[i], ptr, i);
+                    }
+                    // update the stack window
+                    updateStack(table, stack, ptr);
+                    // update the bottom status window
+                    message = "Redo successful! Please enter command:";
+                    updateBottomStatus(bottomStatus, message);
+                }
+                else{
+                    message = "No more redo! Please enter command:";
+                    updateBottomStatus(bottomStatus, message);
+                }
                 break;
             case 5:
                 //if valid == 5, undo the process
-                if(ptr.move >= 0)
+                if(ptr.move >= 0){
                     undo(table, ptr, cardMap, processes);
-                std::cout<<"undo successful!"<<endl;
-                break;
+                    updateTopStatus(topStatus, ptr);
+                    // update the stock window
+                    updateStock(table, stock, ptr);
+                    // update the column window
+                    for (int i = 0; i < 7; i++){
+                        updateColumn(table, column[i], ptr, i);
+                    }
+                    // update the stack window
+                    updateStack(table, stack, ptr);
+                    // update the bottom status window
+                    message = "Redo successful! Please enter command:";
+                    updateBottomStatus(bottomStatus, message);
+                    break;
+                }
+                else{
+                    message = "No more redo! Please enter command:";
+                    updateBottomStatus(bottomStatus, message);
+                    break;
+                }
             default:
                 // if valid == -1, print invalid input
-                std::cout << "Invalid input!" << endl;
+                message = "Invalid input! Please enter command:";
+                updateBottomStatus(bottomStatus, message);
+                break;
         }
-        */
+        command = listenInput(inputWindow);
+    }
  /*       
         // print table and ask for command
         printTable(table, ptr);
@@ -261,7 +309,6 @@ int main(){
         std::cout<<"after move++"<<ptr.move<<' '<<processes.size()<<endl;
         previousCommand = command;
 */
-    }
     // free memory from table
     delwin(topStatus);
     delwin(stock);
