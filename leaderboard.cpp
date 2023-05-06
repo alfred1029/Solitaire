@@ -1,52 +1,40 @@
-//to generate new leaderboard
-
-#include "card.h"
-#include "leaderboard.h"
+//to store scores
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include "card.h"
+#include "leaderboard.h"
 
-
-void leaderboard(Ptr &p) {
+void leaderboard(&p) {
   
   ifstream oldScores;
-  int oldScore;
   ofstream newScores;
-  
-  //create a vector to carry old and new scores to be sorted
   vector<int> temp;
   
-  //open old leaderboard
   oldScores.open("scores.txt");
   
-  //read all old scores from the leaderboard (read "scores.txt" line by line until its end)
+  //append old scores to the temp vector
   while(oldScores >> oldScore) {
-    
-    //append old scores to a temporary vector
     temp.push_back(oldScore);
-    
   }
   
-  //append the new score to the temporary vector
+  //append the new score to the vector
   temp.push_back(p.score);
   
-  //sort the scores in the temporary vector in descending order
+  //sort the scores from highest to lowest
   sort(temp.begin(), temp.end());
   
-  //keep top 10 scores (if there are more than 10 score records, remove the lowest score)
+  //if there are more than 10 score records, remove the lowest score
   if (temp.size() > 10) {
     temp.pop_back();
   }
   
-  //close the old leaderboard
   oldScores.close();
   
-  //open the new leaderboard, clearing "scores.txt"
   newScores.open("scores.txt");
   
-  //append the top scores to the new leaderboard
-  for (int i = 0; i < temp.size(); i++) {
-
+  //update the top scores
+  for (int = 0; i < temp.size(); i++) {
     newScores << temp[i] << endl;
   }
   

@@ -1,6 +1,6 @@
 /*  checkInput.cpp
     1.  checkValid
-    2.  findTarget
+    2.  findTarget    
     3.  findStack
     4.  convertCard
 */
@@ -36,11 +36,7 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
                 p.column = cardMap[card].column;
                 p.row = cardMap[card].row;
                 // valid = 2 means move card to column
-                if (table[p.column][p.row].shown){
-                    valid = 2;
-                }else{
-                    valid = -1;
-                }
+                valid = 2;
             }
             break;
         case 3:
@@ -53,23 +49,21 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
                 p.column = cardMap[card].column;
                 p.row = cardMap[card].row;
                 // valid = 3 means move card to stack
-                if (table[p.column][p.row].shown){
-                    valid = 3;
-                }else{
-                    valid = -1;
-                }
+                valid = 3;
             }
             break;
         case 4:
             if (input == "redo"){
-                // if input[0] == r
                 //valid = 4 means redo
                 valid = 4;
             }
             else if (input == "undo"){
-                //if input[0] == u
                 //valid = 5 means undo
                 valid = 5;
+            }
+            else if (input == "save"){
+                //valid = 6 means save
+                valid = 6;
             }
             break;
     }
@@ -79,6 +73,11 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
 /* Function to find the stack */
 void findStack (vector<vector<Card>> &table, Ptr &p){
     p.target = -1;
+    cout << "target: " << p.target << endl;
+    cout << "column: " << p.column << endl;
+    cout << "row: " << p.row << endl;
+    cout << table[8][table[p.column][p.row].suit].rank << endl;
+    cout << table[p.column][p.row].rank << endl;
     // if the rank is one greater than card in stack with the same suit, set target to the stack
     if (table[8][table[p.column][p.row].suit].rank == table[p.column][p.row].rank - 1){
         p.target = 8;
