@@ -34,24 +34,24 @@ Alternatively, revealing all cards in a face-up position in the columns would al
 
 ## Game rules
 Building a stack: 
-Stacks can only be built in ascending sequence. 
+1. Stacks can only be built in ascending sequence. 
 (i.e. The rank of a card must be greater than the card below it by 1.)
-All cards in a stack must belong to the same suit. 
-An Ace card can be moved to an empty stack. 
+2. All cards in a stack must belong to the same suit. 
+3. An Ace card can be moved to an empty stack. 
 
 Building a column: 
-Columns can only be built in descending sequence. 
+1. Columns can only be built in descending sequence. 
 (i.e. The rank of a card must be less than the card below it by 1.)
-Columns must be built in alternating colors of red and black. 
+2. Columns must be built in alternating colors of red and black. 
 (i.e. A card of suit diamonds/hearts should be stacked on a card of suit clubs/spades, and vice versa.)
-A King card can be moved to an empty column. 
+3. A King card can be moved to an empty column. 
 
 Drawing cards from the stock: 
-Only one card can be drawn at a time. 
-Only the most recently drawn card can be moved. 
-Only the three most recently drawn cards are shown. 
-If the card drawn cannot be placed, the player should move it to the wastepile and draw again. 
-When all cards in the stockpile have been drawn, the wastepile is cycled. 
+1. Only one card can be drawn at a time. 
+2. Only the most recently drawn card can be moved. 
+3. Only the three most recently drawn cards are shown. 
+4. If the card drawn cannot be placed, the player should move it to the wastepile and draw again. 
+5. When all cards in the stockpile have been drawn, the wastepile is cycled. 
 
 Scoring method: 
 +5 points: when a card is moved to a column
