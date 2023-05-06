@@ -1,4 +1,9 @@
 FLAGS = -g -std=c++11 -lncurses
+ifeq ($(OS),Windows_NT)
+    command := del /F /Q
+else
+	command := rm -f
+endif
 
 checkInput.o: checkInput.cpp checkInput.h redoUndo.h
 	g++ $(FLAGS) -c $<
