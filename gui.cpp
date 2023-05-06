@@ -156,12 +156,12 @@ string listenInput(WINDOW * &window){
     string temp;
     for (int i = 1; i < 4; ++i){
         input = wgetch(window);
-        temp += input;
+        temp += tolower(input);
         wdelch(window);
         switch (i)
         {
             case 1:
-                if (temp == "f" || temp == "e" || temp == "u" || temp == "u")
+                if (temp == "f" || temp == "e" || temp == "r" || temp == "u")
                     return temp;
                 break;
             case 2:
