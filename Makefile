@@ -1,5 +1,4 @@
-FLAGS = -g -std=c++11 -lncurses
-FLAGS2 = -g -std=c++11 -lncursesw
+FLAGS = -g -std=c++11
 ifeq ($(OS),Windows_NT)
     command := del /F /Q
 else
@@ -10,6 +9,9 @@ checkInput.o: checkInput.cpp checkInput.h redoUndo.h
 	g++ $(FLAGS) -c $<
 
 initTable.o: initTable.cpp initTable.h card.h
+	g++ $(FLAGS) -c $<
+
+gui.o: gui.cpp gui.h card.h
 	g++ $(FLAGS) -c $<
 
 guiTemp.o: guiTemp.cpp guiTemp.h card.h
@@ -24,14 +26,17 @@ redoUndo.o: redoUndo.cpp redoUndo.h card.h
 checkWin.o: checkWin.cpp checkWin.h card.h
 	g++ $(FLAGS) -c $<
 	
+start.o: start.cpp gui.h
+	g++ $(FLAGS) -c $<
+	
 leaderboard.o: leaderboard.cpp leaderboard.h card.h
 	g++ $(FLAGS) -c $<
 
 main.o: main.cpp initTable.h
 	g++ $(FLAGS) -c $<
 
-main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o
-	g++ $(FLAGS2) $^ -o $@
+main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o gui.o start.o
+	g++ $(FLAGS) $^ -o $@ -lncurses -lmenu
 
 clean:
 	$(command) *.o *.exe main
