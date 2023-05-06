@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <menu.h>
+#include <saveLoadFile.h>
 
 void printLoad(WINDOW * &window);
 void printLeaderboard(WINDOW * &window);
@@ -131,7 +132,7 @@ void printMenu(WINDOW * &window) {
                 // clear the screen
                 wclear(window);
                 // print the background
-                printLoad(window);
+                void loadGame(table, &p, cardMap);
                 // refresh the screen
                 wrefresh(window);
             }
@@ -248,18 +249,18 @@ int printDifficulty(WINDOW * &window){
     }
 }
 
-// Print the save/load menu
-void printLoad(WINDOW * &window) {
-    // Print a menu with save and load buttons aligned vertically
-    std::string menu[2] = {"Save", "Load"};
-    int y = 15;
-    for (int i = 0; i < 2; ++i) {
-        mvwprintw(window, y, 0, menu[i].c_str());
-        y += 3;
-        wrefresh(window);
-    }
-    wrefresh(window);
-}
+// // Print the save/load menu
+// void printLoad(WINDOW * &window) {
+//     // Print a menu with save and load buttons aligned vertically
+//     std::string menu[2] = {"Save", "Load"};
+//     int y = 15;
+//     for (int i = 0; i < 2; ++i) {
+//         mvwprintw(window, y, 0, menu[i].c_str());
+//         y += 3;
+//         wrefresh(window);
+//     }
+//     wrefresh(window);
+// }
 
 // Print the leaderboard
 void printLeaderboard(WINDOW * &window) {

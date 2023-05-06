@@ -9,6 +9,7 @@
 #include "card.h"
 #include "redoUndo.h"
 #include <locale.h>
+#include "saveLoadFile.h"
 
 using namespace std;
 
@@ -288,6 +289,12 @@ int main(){
                     updateBottomStatus(bottomStatus, message);
                     break;
                 }
+            case 6:
+                //if valid == 6, save the game
+                saveGame(table, ptr, cardMap, processes);
+                message = "Game saved!";
+                updateBottomStatus(bottomStatus, message);
+                break;
             default:
                 // if valid == -1, print invalid input
                 message = "Invalid input! Please enter command:";
