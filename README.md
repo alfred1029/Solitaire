@@ -102,7 +102,7 @@ Program functions are stored separately in different files, including “checkIn
 
 - #include <iostream>
 - #include <vector>
-- # include <string>
+- #include <string>
 - #include <map>
 - #include <ncurses.h>
 - #include <menu.h>
