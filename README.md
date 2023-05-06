@@ -100,17 +100,17 @@ Program functions are stored separately in different files, including “checkIn
 
 ## Used C/C++ library list
 
-- #include <iostream>
-- #include <vector>
-- #include <string>
-- #include <map>
-- #include <ncurses.h>
-- #include <menu.h>
-- #include <random>
-- #include <algorithm>
-- #include <sstream>
-- #include <fstream>
-- #inclulde <locale.h>
+- iostream
+- vector
+- string
+- map
+- ncurses.h
+- menu.h
+- random
+- algorithm
+- sstream
+- fstream
+- locale.h
 
 ## Compilation and execution instruction
 ## Group members
