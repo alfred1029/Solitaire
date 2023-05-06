@@ -74,21 +74,26 @@ Leaderboard
 
 How the project requirements are met: 
 1. Generation of random game sets or events
+
 After the seven columns have been filled in a triangular arrangement, the remaining cards in the deck are shuffled to generate the stockpile, such that cards are drawn in random order. This is implemented using the <random> library to create a random device to shuffle the deck array. 
 
 2. Data structures for storing game status
+
 The position of each card is stored in the struct “CardMap”, containing its column and row. 
 The layout of the table is stored using a 2D vector “table”, which contains “Card” variables. Each row in the vector represents a column, the stack, or the stock. Each value in a row stores a “Card”. The struct “Card” contains information about a card’s rank, suit, and whether it is faceup or facedown (i.e. whether it is shown or not). 
 
 3. Dynamic memory management
+
 When the game is played, the 2D vector “table” and struct “CardMap” are updated while the game is running to store the current layout of the table and the current position of each card to reflect the current status of the game. 
 
 4. File input/output
+
 When the game is saved, the game status data is written into a text file. When the game is loaded, the data is read from the text file to construct the table layout. 
 
 When the game ends, the 10 highest historical scores are read from the text file “leaderboard.txt” to form a vector. The new score is appended to the vector. The vector is sorted in descending order and the 10 highest scores in the vector overwrite “leaderboard.txt”. If less than 10 scores are recorded in “leaderboard.txt”, the new score is simply inserted into it in descending order. 
 
 5. Program codes in multiple files
+
 Program functions are stored separately in different files, including “checkInput.cpp”, “checkWin.cpp”, “initTable.cpp”, “leaderboard.cpp”, “main.cpp”, “move.cpp”, “randomPosition.cpp”, etc. 
 
 ## Used C/C++ library list
