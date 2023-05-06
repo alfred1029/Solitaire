@@ -9,40 +9,13 @@
 #include "card.h"
 #include "redoUndo.h"
 #include <locale.h>
+#include "checkWin.h"
 
 using namespace std;
 
-// This function will setup the windows
-void setupWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &inputWindow){
-    topStatus = newwin(1, 90, 0, 0);
-    // initialize the stock window with 16 rows and 10 columns, start at (2,0)
-    stock = newwin(16, 10, 2, 1);
-    // initialize the stack window with 20 rows and 10 columns, start at (2,80)
-    stack = newwin(20, 10, 2, 80);
-    // initialize the column window 0-6 with 36 rows and 10 columns each, start at (2,10)
-    for (int i = 0; i < 7; i++){
-        column[0] = newwin(36, 10, 2, (i+1)*10);
-    }
-    // initialize the bottom status window with 1 row and 90 columns, start at (38,0)
-    bottomStatus = newwin(1, 90, 38, 0);
-    // initialize the input window with 1 row and 90 columns, start at (39,0)
-    inputWindow = newwin(1, 90, 39, 0);
-}
-
-// This function will delete the windows
-void deleteWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &inputWindow){
-    delwin(topStatus);
-    delwin(stock);
-    delwin(stack);
-    for (int i = 0; i < 7; i++){
-        delwin(column[i]);
-    }
-    delwin(bottomStatus);
-    delwin(inputWindow);
-}
-
 int main(){
 
+    string userName = "My friend";
     string difficulty;
     std::cout << "Please select difficulty: easy, medium, hard, expert" << endl;
     cin >> difficulty;
@@ -69,12 +42,11 @@ int main(){
     // command to store user input
     // valid to check if command is valid and pass it to corresponding function
     Ptr ptr;
-    string command="000", message="Welcome my friend! Please enter command:";
-    char input[100];
+    string command="000", prevCommand="000", message="Welcome my friend! Please enter command:";
+    char yesNo;
     int valid;
     //save the initial process
     saveProcess(table, ptr, cardMap, processes);
-    std::cout << processes.size() << endl;
     // game loop
 
     // ------------------------------------------ GUI ------------------------------------------
@@ -131,11 +103,17 @@ int main(){
 
     command = listenInput(inputWindow);
 
-    while (command != "e" )
+    while (true)
     {   
         //get user input
-
         valid = checkValid(table, cardMap, ptr, command);
+        // if the prevCommand is undo or redo, current command is not undo or redo, delete exceed process
+        if (valid != -1){
+            if (detectPreviousCommand(command, prevCommand)){
+                //delete exceed process
+                deleteProcess(table,ptr,cardMap,processes); 
+            }
+        }
         // if command is valid, execute the command
         switch (valid){
             case 1:
@@ -150,7 +128,7 @@ int main(){
                 // if valid == 2, move card to column
                 findTarget(table, ptr);
                 if (ptr.target == -1){
-                    message = "No possible move! Please enter command:";
+                    message = "No possible move! " + userName + ", Please enter command:";
                     updateBottomStatus(bottomStatus, message);
                     break;
                 }
@@ -171,7 +149,7 @@ int main(){
                 // if valid == 3, move card to stack
                 findStack(table, ptr);
                 if (ptr.target == -1){
-                    message = "No possible move! Please enter command:";
+                    message = "No possible move! " + userName + ", Please enter command:";
                     updateBottomStatus(bottomStatus, message);
                     break;
                 }
@@ -190,7 +168,7 @@ int main(){
                 break;
             case 4:
                 //if valid == 4, redo the process
-                if(ptr.move <processes.size()){
+                if(ptr.move < processes.size()-1){
                     redo(table, ptr, cardMap, processes);
                     updateTopStatus(topStatus, ptr);
                     // update the stock window
@@ -202,17 +180,17 @@ int main(){
                     // update the stack window
                     updateStack(table, stack, ptr);
                     // update the bottom status window
-                    message = "Redo successful! Please enter command:";
+                    message = "Redo successful! " + userName + ", Please enter command:";
                     updateBottomStatus(bottomStatus, message);
                 }
                 else{
-                    message = "No more redo! Please enter command:";
+                    message = "No more redo! " + userName + ", Please enter command:";
                     updateBottomStatus(bottomStatus, message);
                 }
                 break;
             case 5:
                 //if valid == 5, undo the process
-                if(ptr.move >= 0){
+                if(ptr.move > 0){
                     undo(table, ptr, cardMap, processes);
                     updateTopStatus(topStatus, ptr);
                     // update the stock window
@@ -224,21 +202,77 @@ int main(){
                     // update the stack window
                     updateStack(table, stack, ptr);
                     // update the bottom status window
-                    message = "Redo successful! Please enter command:";
+                    message = "Undo successful! " + userName + ", Please enter command:";
                     updateBottomStatus(bottomStatus, message);
                     break;
                 }
                 else{
-                    message = "No more redo! Please enter command:";
+                    message = "No more Undo! " + userName + ", Please enter command:";
                     updateBottomStatus(bottomStatus, message);
                     break;
                 }
+            case 6:
+                //if valid == 6, exit the game
+                message = "My friend, " + userName + ", Are you sure you want to exit? (y/n)";
+                updateBottomStatus(bottomStatus, message);
+                wclear(inputWindow);
+                yesNo = wgetch(inputWindow);
+                if (tolower(yesNo) == 'y'){
+                    //exit the game
+                    message = "Bye! " + userName + ", See you next time!";
+                    updateBottomStatus(bottomStatus, message);
+                    napms(1000);
+                    delwin(topStatus);
+                    delwin(stock);
+                    delwin(stack);
+                    for (int i = 0; i < 7; i++){
+                        delwin(column[i]);
+                        delwin(bottomStatus);
+                        delwin(inputWindow);
+                        endwin();
+                        exit(0);
+                    }
+                }
+                else{
+                    message = "Welcome back! " + userName + ", Please enter command:";
+                    updateBottomStatus(bottomStatus, message);
+                }
+                break;
             default:
                 // if valid == -1, print invalid input
-                message = "Invalid input! Please enter command:";
+                message = "Invalid input! " + userName + ", Please enter command:";
                 updateBottomStatus(bottomStatus, message);
                 break;
         }
+        if (checkWin(table)){
+            message = "Congratulations! You win! " + userName + ", Restart the game? (y/n)";
+            updateBottomStatus(bottomStatus, message);
+            wclear(inputWindow);
+            yesNo = wgetch(inputWindow);
+            if (tolower(yesNo) == 'y'){
+                //reset the game
+                //resetGame(table, ptr, cardMap, processes);
+                // update the top status window
+                updateTopStatus(topStatus, ptr);
+                // update the stock window
+                updateStock(table, stock, ptr);
+                // update the column window
+                for (int i = 0; i < 7; i++){
+                    updateColumn(table, column[i], ptr, i);
+                }
+                // update the stack window
+                updateStack(table, stack, ptr);
+                // update the bottom status window
+                message = "Game restarted! " + userName + ", Please enter command:";
+                updateBottomStatus(bottomStatus, message);
+            }
+            else{
+                break;
+            }
+        }
+        //save the last command
+        prevCommand = command;
+        // listen to the user input
         command = listenInput(inputWindow);
     }
  /*       
@@ -309,6 +343,10 @@ int main(){
         std::cout<<"after move++"<<ptr.move<<' '<<processes.size()<<endl;
         previousCommand = command;
 */
+    message = "Bye! " + userName + ", See you next time!";
+    updateBottomStatus(bottomStatus, message);
+    napms(1000);
+
     // free memory from table
     delwin(topStatus);
     delwin(stock);
