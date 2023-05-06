@@ -13,29 +13,19 @@ using namespace std;
 
 //Function to check if the game is won
 bool checkWin(vector<vector<Card>> &table) {
-  
-  //if the top cards of all stacks (column 8) are K, the game is won
-  int count = 0;
-  for (int i = 0; i < 4; i++) {
+//if the top cards of all stacks (column 8) are K, the game is won
+  for (int i = 0; i < 4; ++i) {
     if (table[8][i].rank != 13) {
-      count++;
+      return false;
     }
   }
-  if (count == 4) {
-    return true;
-  }
-  
   //if all cards are shown in columns (i.e. the bottom cards of all column are shown) and there are no cards in stock
-  if (table[8].size() == 0) {
-    for (int i = 0; i < 7; i++) {
-      if (table[i].size() != 0) {
-        if (!table[i][0].shown) {
-          return false;
-        }
-      }
-    return true;
+  for (int i = 0; i < 7; ++i) {
+    if (table[i][0].shown == false) {
+      return false;
     }
   }
+  return true;
 }
 
 

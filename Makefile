@@ -12,6 +12,9 @@ checkInput.o: checkInput.cpp checkInput.h redoUndo.h
 initTable.o: initTable.cpp initTable.h card.h
 	g++ $(FLAGS) -c $<
 
+gui.o: gui.cpp gui.h card.h
+	g++ $(FLAGS) -c $<
+
 guiTemp.o: guiTemp.cpp guiTemp.h card.h
 	g++ $(FLAGS) -c $<
 
@@ -34,6 +37,10 @@ main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o lea
 	g++ $(FLAGS2) $^ -o $@
 
 clean:
+	$(command) *.o *.exe main
+
+run: clean main
+	./main
 	$(command) *.o *.exe main
 
 run: clean main
