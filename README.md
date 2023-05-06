@@ -63,16 +63,17 @@ Scoring method:
 
 ## Game features
 List of features: 
-Table setup
-Save game
-Load game
-Redo move
-Undo move
-Card movement
-Scorekeeping
-Leaderboard
+- Table setup
+- Save game
+- Load game
+- Redo move
+- Undo move
+- Card movement
+- Scorekeeping
+- Leaderboard
 
 How the project requirements are met: 
+
 1. Generation of random game sets or events
 
 After the seven columns have been filled in a triangular arrangement, the remaining cards in the deck are shuffled to generate the stockpile, such that cards are drawn in random order. This is implemented using the <random> library to create a random device to shuffle the deck array. 
