@@ -42,15 +42,29 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
             card = convertCard(input);
             // if the card is valid
             if (card != -1){
-                p.column = cardMap[card].column;
-                p.row = cardMap[card].row;
-                // valid = 2 means move card to column
-                if (table[p.column][p.row].shown){
-                    valid = 2;
-                }else{
-                    valid = -1;
+                // if the card is in stack
+                if (cardMap[card].column == 8){
+                    
+                    if (table[8][card/13].rank == card%13 + 1){
+                        p.column = 8;
+                        p.row = card/13;
+                        // valid = 2 means move card to column
+                        valid = 2;
+                    }
+                    else
+                        valid = -1;
                 }
-            }
+                else{
+                    // if the card is in column
+                    p.column = cardMap[card].column;
+                    p.row = cardMap[card].row;
+                    // valid = 2 means move card to column
+                    if (table[p.column][p.row].shown)
+                        valid = 2;
+                    else
+                        valid = -1;
+                }
+            }   
             break;
         case 3:
             if (tolower(input[2]) != 's')
@@ -115,7 +129,7 @@ void findTarget (vector<vector<Card>> &table, Ptr &p){
 int convertCard (string card){
     int rank = -1;
     int suit = -1;
-    switch (card[0]){
+    switch (tolower(card[0])){
         case 'a':
             rank = 1;
             break;
