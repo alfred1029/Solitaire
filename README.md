@@ -116,7 +116,7 @@ Program functions are stored separately in different files, including “checkIn
 ## Group members
 Cheung Yan Shek, UID: 3036065575, Github username: namelessxxv
 
-Hong Hiu Shun, UID: 3036065422  
+Hong Hiu Shun, UID: 3036065422, Github username: THA114514
 
 Hui Lok Samuel, UID: 3036059980, Github username: creampithon
 
