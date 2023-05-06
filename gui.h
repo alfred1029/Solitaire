@@ -6,6 +6,7 @@
 #include"card.h"
 #include<ncurses.h>
 #include <menu.h>
+#include<map>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ void updateStack(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr);
 void updateColumn(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr, int column);
 void updateTopStatus(WINDOW * &window, Ptr &ptr);
 void updateBottomStatus(WINDOW * &window, string message);
+string listenInput(WINDOW * &window);
 
 // for start.cpp
 void printLogo(WINDOW * &window);

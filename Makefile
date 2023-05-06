@@ -43,5 +43,9 @@ clean:
 
 run: clean main
 	./main
+	$(command) *.o *.exe main
+
+run: clean main
+	./main
 
 .PHONY: clean

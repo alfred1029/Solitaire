@@ -51,7 +51,21 @@ void flipStock(vector<vector<Card> > &table, Ptr &p){
 
 void moveCard(vector<vector<Card> > &table, vector<CardMap> &cardMap, Ptr &p){
     // fill the taget column with the card(s) from the source column
-    if (p.column < 7){
+    if (p.column == 8){
+        // from stack to column
+        table[p.target].push_back(table[p.column][p.row]);
+        // update the cardMap
+        cardMap[table[p.column][p.row].rank-1 + 13 * p.row] = {p.target, static_cast<int>(table[p.target].size()-1)};
+        // remove the card from the source column
+        table[p.column][p.row].rank -= 1;
+        // deduct 30 points
+        p.score -= 30;
+        if (p.score < 15){
+            p.score = 15;
+        }
+    }
+
+    else if (p.column < 7){
         if (p.target == 8){
             // from column to stack
             table[p.target][table[p.column][p.row].suit].rank += 1;
