@@ -42,16 +42,75 @@ void deleteWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW 
 }
 
 int main(){
-
-    string difficulty;
+    string difficulty = "easy";
+    /*
     std::cout << "Please select difficulty: easy, medium, hard, expert" << endl;
     cin >> difficulty;
     if (difficulty != "easy" && difficulty != "medium" && difficulty != "hard" && difficulty != "expert") {
         std::cout << "Invalid difficulty!" << endl;
         return 0;
+    }*/
+    // ------------------------------------------ GUI ------------------------------------------
+    // ---------------------------------initialize the screen-----------------------------------
+    // set locale to support unicode
+    setlocale(LC_ALL,"");
+    // initialize the screen
+    initscr();
+    // hide the cursor
+    curs_set(0);
+    // initialize the color
+    start_color();
+    // initialize the color pair, RED for hearts and diamonds, BLACK for spades and clubs
+    init_pair(1, COLOR_RED, -1);
+    init_pair(2, COLOR_BLACK, -1);
+    // init start screen GUI
+    static WINDOW *logo , *menu , *background, *diffMenu;
+    // initialize the logo window with 17 row and 95 columns, start at (3,12)
+    logo = newwin(9, 95, 8, 12);
+    // initialize the background with 15 row and 40 columns, start at (18,40)
+    background = newwin(15, 40, 18, 40);
+    // initialize difficulty selection
+    diffMenu = newwin(15, 26, 20, 47);
+    // refresh the screen
+    refresh();
+    // print the logo
+    printLogo(logo);
+    // print the background
+    printBackground(background);
+    // print the menu
+    while (true) {
+        // initialize the menu window with 15 row and 40 columns, start at (20,40)
+        menu = newwin(15, 26, 20, 47);
+        printMenu(menu);
+        refresh();
+        int diff= printDifficulty(diffMenu);
+        if (diff == 0){
+            difficulty = "easy";
+            break;
+        }
+        else if (diff == 1){
+            difficulty = "medium";
+            break;
+        }
+        else if (diff == 2){
+            difficulty = "hard";
+            break;
+        }
+        else if (diff == 3){
+            difficulty = "expert";
+            break;
+        }
+        wclear(diffMenu);
     }
+    refresh();
+    noecho();
+    wclear(logo);
+    wclear(background);
+    wclear(menu);
+    endwin();
+    
 
-    //store process
+    // store process
     vector<singleProcess> processes;
 
     // initialize table, cardMap, deck
@@ -78,11 +137,7 @@ int main(){
     std::cout << processes.size() << endl;
     // game loop
 
-    // ------------------------------------------ GUI ------------------------------------------
-    // ---------------------------------initialize the screen-----------------------------------
-    // set locale to support unicode
-    setlocale(LC_ALL,"");
-    // initialize the screen
+
     initscr();
     // hide the cursor
     curs_set(0);
@@ -91,7 +146,6 @@ int main(){
     // initialize the color pair, RED for hearts and diamonds, BLACK for spades and clubs
     init_pair(1, COLOR_RED, -1);
     init_pair(2, COLOR_BLACK, -1);
-
     // initialize the windows
     static WINDOW *topStatus, *stock, *stack, *column[7], *bottomStatus, *inputWindow;
     // initialize the top status window with 1 row and 90 columns, start at (0,0)
