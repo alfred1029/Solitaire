@@ -69,7 +69,8 @@ int main(){
     // command to store user input
     // valid to check if command is valid and pass it to corresponding function
     Ptr ptr;
-    string command="000", message="Welcome my friend! Please enter command:";
+    string command="000",
+    message="Welcome my friend! Please enter command:";
     char input[100];
     int valid;
     //save the initial process
