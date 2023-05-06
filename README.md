@@ -65,11 +65,11 @@ Scoring method:
 ## Game features
 List of features: 
 - Table setup
+- Card movement
 - Save game
 - Load game
 - Redo move
 - Undo move
-- Card movement
 - Scorekeeping
 - Leaderboard
 
