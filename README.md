@@ -57,9 +57,10 @@ Drawing cards from the stock:
 5. When all cards in the stockpile have been drawn, the wastepile is cycled. 
 
 Scoring method: 
-+5 points: when a card is moved to a column
-+20 points: when a card is moved to a stack
--100 points: when the wastepile is recycled
+
+- +5 points: when a card is moved to a column
+- +20 points: when a card is moved to a stack
+- -100 points: when the wastepile is recycled
 
 ## Game features
 List of features: 
