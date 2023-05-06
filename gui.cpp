@@ -1,12 +1,31 @@
 #include"card.h"
-#include "ncurses.h"
+#include <ncurses.h>
 #include"gui.h"
 #include <vector>
 #include <string>
 
 using namespace std;
 
-
+// This function will draw the top part of the card
+// ╭─────╮
+// │7   ♦│ for 7 of Diamond
+void drawCardTop(Card &card, WINDOW * &window, int y){
+    // draw the top part of the card
+    // if the card is not shown, draw the dashed line
+    mvwprintw(window, y, 0, "╭─────╮");
+    if(!card.shown){
+        mvwprintw(window, y+1, 0, "│     │");
+    }
+    // if the card is shown, draw the rank and suit
+    else{
+        if (card.rank == 10){
+            mvwprintw(window, y+1, 0, "│10  %lc│", SUIT[card.suit]);  
+        }
+        else{
+            mvwprintw(window, y+1, 0, "│%c   %lc│", RANK[card.rank], SUIT[card.suit]);
+        }
+    }
+}
 
 // This function will draw the rest part of the card, for the card is not under another card
 // Pass the <vector<vector<Card>>> table, and the window to draw, the start position of y, the card
@@ -15,9 +34,9 @@ using namespace std;
 // └────┘
 void drawCardBottom(WINDOW * &window, int y){
     // draw the rest part of the card
-    mvwprintw(window, y, 0, "|    |");
-    mvwprintw(window, y+1, 0, "|    |");
-    mvwprintw(window, y+2, 0, "+----+");
+    mvwprintw(window, y, 0, "│     │");
+    mvwprintw(window, y+1, 0, "│     │");
+    mvwprintw(window, y+2, 0, "╰─────╯");
 
 }
 void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
@@ -116,4 +135,15 @@ void updateBottomStatus(WINDOW * &window, string message){
     mvwprintw(window, 0, 0, message.c_str());
     // refresh the bottom status window
     wrefresh(window);
+}
+
+// This function will listen to the keyboard input and output a string
+// Pass the window to listen
+// Return the string
+
+string listenInput(WINDOW * &window){
+    // listen to the keyboard input
+    char input[100];
+    wgetstr(window, input);
+    return input;
 }
