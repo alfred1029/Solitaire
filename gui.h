@@ -5,6 +5,7 @@
 #include<string>
 #include"card.h"
 #include<ncurses.h>
+#include <menu.h>
 
 using namespace std;
 
@@ -22,4 +23,12 @@ void updateColumn(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr, int 
 void updateTopStatus(WINDOW * &window, Ptr &ptr);
 void updateBottomStatus(WINDOW * &window, string message);
 
+// for start.cpp
+void printLogo(WINDOW * &window);
+void printBackground(WINDOW * &window);
+void printMenu(WINDOW * &window);
+void printLoad(WINDOW * &window);
+void printLeaderboard(WINDOW * &window);
+void printAbout(WINDOW * &window);
+int printDifficulty(WINDOW * &window);
 #endif
