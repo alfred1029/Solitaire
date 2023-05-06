@@ -9,7 +9,7 @@
 using namespace std;
 
 //static WINDOW *topStatus, *stock, *stack, *column[7], *bottomStatus, *input;
-static char SUIT[4] = {'D', 'C', 'H', 'S'};
+static const wchar_t SUIT[4] = {L'\u2666', L'\u2663', L'\u2665', L'\u2660'};
 static char RANK[14] = {' ', 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
 
 //void setupWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &input);
