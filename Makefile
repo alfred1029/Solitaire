@@ -26,10 +26,10 @@ redoUndo.o: redoUndo.cpp redoUndo.h card.h
 checkWin.o: checkWin.cpp checkWin.h card.h
 	g++ $(FLAGS) -c $<
 	
-leaderboard.o: leaderboard.cpp leaderboard.h card.h
-	g++ $(FLAGS) -c $<
-
 start.o: start.cpp gui.h
+	g++ $(FLAGS) -c $<
+	
+leaderboard.o: leaderboard.cpp leaderboard.h card.h
 	g++ $(FLAGS) -c $<
 
 main.o: main.cpp initTable.h
