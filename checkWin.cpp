@@ -11,7 +11,9 @@
 
 using namespace std;
 
-//Function to check if the game is won
+/*Function to check if the game is won
+Input: a table layout, in the form of a 2D vector of "Card"s
+Output: true if the game is won, false if the game is not won*/
 bool checkWin(vector<vector<Card>> &table) {
 //if the top cards of all stacks (column 8) are K, the game is won
   for (int i = 0; i < 4; ++i) {
@@ -29,7 +31,9 @@ bool checkWin(vector<vector<Card>> &table) {
 }
 
 
-//Function to check if there are no more available moves
+/*Function to check if there are no more available moves
+Input: a table layout, in the form of a 2D vector of "Card"s
+Output: true if there are more moves (i.e. if more cards can be drawn or cards can be stacked)*/
 bool moveAvailable(vector<vector<Card>> &table) {
   
   //if there are unshown cards in the stock, cards can be drawn (i.e. moves are available)
