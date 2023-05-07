@@ -89,13 +89,13 @@ int main(){
     // update the top status window
     updateTopStatus(topStatus, ptr);
     // update the stock window
-    updateStock(table, stock, ptr);
+    updateStock(table, stock);
     // update the column window
     for (int i = 0; i < 7; i++){
-        updateColumn(table, column[i], ptr, i);
+        updateColumn(table, column[i], i);
     }
     // update the stack window
-    updateStack(table, stack, ptr);
+    updateStack(table, stack);
     // update the bottom status window
     updateBottomStatus(bottomStatus, message);
 
@@ -121,7 +121,7 @@ int main(){
                 flipStock(table, ptr);//ptr.move++
                 //save process
                 saveProcess(table, ptr, cardMap, processes);
-                updateStock(table, stock, ptr);
+                updateStock(table, stock);
                 updateTopStatus(topStatus, ptr);
                 break;
             case 2:
@@ -137,13 +137,13 @@ int main(){
                 saveProcess(table, ptr, cardMap, processes);
                 updateTopStatus(topStatus, ptr);
                 if (ptr.target == 8)
-                    updateStack(table, stack, ptr);
+                    updateStack(table, stack);
                 else
-                    updateColumn(table, column[ptr.target], ptr, ptr.target);
+                    updateColumn(table, column[ptr.target], ptr.target);
                 if (ptr.column == 7)
-                    updateStock(table, stock, ptr);
+                    updateStock(table, stock);
                 else
-                    updateColumn(table, column[ptr.column], ptr, ptr.column);
+                    updateColumn(table, column[ptr.column], ptr.column);
                 break;
             case 3:
                 // if valid == 3, move card to stack
@@ -158,13 +158,13 @@ int main(){
                 saveProcess(table, ptr, cardMap, processes);
                 updateTopStatus(topStatus, ptr);
                 if (ptr.target == 8)
-                    updateStack(table, stack, ptr);
+                    updateStack(table, stack);
                 else
-                    updateColumn(table, column[ptr.target], ptr, ptr.target);
+                    updateColumn(table, column[ptr.target], ptr.target);
                 if (ptr.column == 7)
-                    updateStock(table, stock, ptr);
+                    updateStock(table, stock);
                 else
-                    updateColumn(table, column[ptr.column], ptr, ptr.column);
+                    updateColumn(table, column[ptr.column], ptr.column);
                 break;
             case 4:
                 //if valid == 4, redo the process
@@ -172,13 +172,13 @@ int main(){
                     redo(table, ptr, cardMap, processes);
                     updateTopStatus(topStatus, ptr);
                     // update the stock window
-                    updateStock(table, stock, ptr);
+                    updateStock(table, stock);
                     // update the column window
                     for (int i = 0; i < 7; i++){
-                        updateColumn(table, column[i], ptr, i);
+                        updateColumn(table, column[i], i);
                     }
                     // update the stack window
-                    updateStack(table, stack, ptr);
+                    updateStack(table, stack);
                     // update the bottom status window
                     message = "Redo successful! " + userName + ", Please enter command:";
                     updateBottomStatus(bottomStatus, message);
@@ -194,13 +194,13 @@ int main(){
                     undo(table, ptr, cardMap, processes);
                     updateTopStatus(topStatus, ptr);
                     // update the stock window
-                    updateStock(table, stock, ptr);
+                    updateStock(table, stock);
                     // update the column window
                     for (int i = 0; i < 7; i++){
-                        updateColumn(table, column[i], ptr, i);
+                        updateColumn(table, column[i], i);
                     }
                     // update the stack window
-                    updateStack(table, stack, ptr);
+                    updateStack(table, stack);
                     // update the bottom status window
                     message = "Undo successful! " + userName + ", Please enter command:";
                     updateBottomStatus(bottomStatus, message);
@@ -221,7 +221,7 @@ int main(){
                     //exit the game
                     message = "Bye! " + userName + ", See you next time!";
                     updateBottomStatus(bottomStatus, message);
-                    napms(1000);
+                    napms(500);
                     delwin(topStatus);
                     delwin(stock);
                     delwin(stack);
@@ -254,14 +254,14 @@ int main(){
                 //resetGame(table, ptr, cardMap, processes);
                 // update the top status window
                 updateTopStatus(topStatus, ptr);
-                // update the stock window
-                updateStock(table, stock, ptr);
+                // update the stock window 
+                updateStock(table, stock);
                 // update the column window
                 for (int i = 0; i < 7; i++){
-                    updateColumn(table, column[i], ptr, i);
+                    updateColumn(table, column[i], i);
                 }
                 // update the stack window
-                updateStack(table, stack, ptr);
+                updateStack(table, stack);
                 // update the bottom status window
                 message = "Game restarted! " + userName + ", Please enter command:";
                 updateBottomStatus(bottomStatus, message);
@@ -345,7 +345,7 @@ int main(){
 */
     message = "Bye! " + userName + ", See you next time!";
     updateBottomStatus(bottomStatus, message);
-    napms(1000);
+    napms(500);
 
     // free memory from table
     delwin(topStatus);
