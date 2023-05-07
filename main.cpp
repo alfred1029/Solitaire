@@ -11,7 +11,6 @@
 #include <locale.h>
 #include "checkWin.h"
 #include "saveLoadFile.h"
-#include "leaderboard.h"
 #include <ncurses.h>
 
 
