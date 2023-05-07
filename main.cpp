@@ -4,7 +4,6 @@
 #include <ncurses.h>
 #include <locale.h>
 #include "gui.h"
-#include "guiTemp.h"
 #include "initTable.h"
 #include "move.h"
 #include "checkInput.h"

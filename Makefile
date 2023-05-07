@@ -14,9 +14,6 @@ initTable.o: initTable.cpp initTable.h card.h
 gui.o: gui.cpp gui.h card.h
 	g++ $(FLAGS) -c $<
 
-guiTemp.o: guiTemp.cpp guiTemp.h card.h
-	g++ $(FLAGS) -c $<
-
 move.o: move.cpp move.h card.h
 	g++ $(FLAGS) -c $<
 
@@ -35,7 +32,7 @@ saveLoadFile.o: saveLoadFile.cpp saveLoadFile.h card.h
 main.o: main.cpp initTable.h
 	g++ $(FLAGS) -c $<
 
-main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o gui.o start.o saveLoadFile.o
+main: main.o initTable.o move.o checkInput.o redoUndo.o checkWin.o gui.o start.o saveLoadFile.o
 	g++ $(FLAGS) $^ -o $@ -I/ncursesw -lncursesw
 
 clean:
