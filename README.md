@@ -16,24 +16,24 @@ Alternatively, revealing all cards in a face-up position in the columns would al
 
 ## Game rules
 Building a stack: 
-1. Stacks can only be built in ascending sequence. 
+- 1. Stacks can only be built in ascending sequence. 
 (i.e. The rank of a card must be greater than the card below it by 1.)
-2. All cards in a stack must belong to the same suit. 
-3. An Ace card can be moved to an empty stack. 
+- 2. All cards in a stack must belong to the same suit. 
+- 3. An Ace card can be moved to an empty stack. 
 
 Building a column: 
-1. Columns can only be built in descending sequence. 
+- 1. Columns can only be built in descending sequence. 
 (i.e. The rank of a card must be less than the card below it by 1.)
-2. Columns must be built in alternating colors of red and black. 
+- 2. Columns must be built in alternating colors of red and black. 
 (i.e. A card of suit diamonds/hearts should be stacked on a card of suit clubs/spades, and vice versa.)
-3. A King card can be moved to an empty column. 
+- 3. A King card can be moved to an empty column. 
 
 Drawing cards from the stock: 
-1. Only one card can be drawn at a time. 
-2. Only the most recently drawn card can be moved. 
-3. Only the three most recently drawn cards are shown. 
-4. If the card drawn cannot be placed, the player should move it to the wastepile and draw again. 
-5. When all cards in the stockpile have been drawn, the wastepile is cycled. 
+- 1. Only one card can be drawn at a time. 
+- 2. Only the most recently drawn card can be moved. 
+- 3. Only the three most recently drawn cards are shown. 
+- 4. If the card drawn cannot be placed, the player should move it to the wastepile and draw again. 
+- 5. When all cards in the stockpile have been drawn, the wastepile is cycled. 
 
 How to play: 
 1. Flip the stock deck 
@@ -68,53 +68,69 @@ List of features:
 - Scorekeeping
 - Leaderboard
 
-How the project requirements are met: 
+## Meeting project requirements 
+<details>
 
+<summary>
 1. Generation of random game sets or events
-
+</summary>
 After the seven columns have been filled in a triangular arrangement, the remaining cards in the deck are shuffled to generate the stockpile, such that cards are drawn in random order. This is implemented using the <random> library to create a random device to shuffle the deck array. 
+</details>
+<details>
 
+<summary>
 2. Data structures for storing game status
-
+</summary>
 The position of each card is stored in the struct “CardMap”, containing its column and row. 
 The layout of the table is stored using a 2D vector “table”, which contains “Card” variables. Each row in the vector represents a column, the stack, or the stock. Each value in a row stores a “Card”. The struct “Card” contains information about a card’s rank, suit, and whether it is faceup or facedown (i.e. whether it is shown or not). 
+</details>
+<details>
 
+<summary>
 3. Dynamic memory management
-
+</summary>
 When the game is played, the 2D vector “table” and struct “CardMap” are updated while the game is running to store the current layout of the table and the current position of each card to reflect the current status of the game. 
+</details>
+<details>
 
+<summary>
 4. File input/output
-
+</summary>
 When the game is saved, the game status data is written into a text file. When the game is loaded, the data is read from the text file to construct the table layout. 
 
 When the game ends, the 10 highest historical scores are read from the text file “leaderboard.txt” to form a vector. The new score is appended to the vector. The vector is sorted in descending order and the 10 highest scores in the vector overwrite “leaderboard.txt”. If less than 10 scores are recorded in “leaderboard.txt”, the new score is simply inserted into it in descending order. 
+</details>
+<details>
 
+<summary>
 5. Program codes in multiple files
-
+</summary>
 Program functions are stored separately in different files, including “checkInput.cpp”, “checkWin.cpp”, “initTable.cpp”, “leaderboard.cpp”, “main.cpp”, “move.cpp”, “randomPosition.cpp”, etc. 
+</details>
 
 ## Used C/C++ library list
 
-- iostream  
+- ```iostream```  
   for standard input and output 
-- vector  
+- ```vector```  
   to store element for example storing the deck, columns etc. 
-- map  
+- ```map```  
   to store element for example mapping leaderboard name with score and mapping the struct Card with its location 
-- string 
-- ncurses.h  
+- ```string``` 
+- ```ncurses.h```  
   for gui 
-- menu.h  
+- ```menu.h```  
   for gui 
-- random  
+- ```random```  
   for initializing random deck and choosing random winnable deck from data base 
-- algorithm  
+- ```algorithm```  
   mainly using for sorting vector such as the score of leaderboard 
-- sstream  
+- ```sstream```  
   for performing extraction mainly using isstringstream to splitting text from files 
-- fstream  
+- ```fstream```  
   for file input and output in initializing winnable deck, saveLoad, leaderboard 
-- locale.h  
+- ```locale.h```  
+  for enabling UTF-8 output in ncurses
 
 ## Compilation and execution instruction
 The is no additional configuration required.
