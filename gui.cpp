@@ -20,6 +20,7 @@ void drawCardTop(Card &card, WINDOW * &window, int y){
         wattron(window, COLOR_PAIR(1));
     // draw the top part of the card
     // if the card is not shown, draw the line only
+    
     mvwprintw(window, y, 0, "╭─────╮");
     if(!card.shown){
         mvwprintw(window, y+1, 0, "│     │");
@@ -28,11 +29,11 @@ void drawCardTop(Card &card, WINDOW * &window, int y){
     else{
         if (card.rank == 10){
             // get the unicode of suit from SUIT array defined in gui.h
-            mvwprintw(window, y+1, 0, "│10  %lc│", SUIT[card.suit]);  
+            mvwprintw(window, y+1, 0, "│10  %lc│", SUIT[static_cast<int>(card.suit)]);  
         }
         else{
             // get the ascii of rank and unicode of suit from RANK and SUIT array defined in gui.h
-            mvwprintw(window, y+1, 0, "│%c   %lc│", RANK[card.rank], SUIT[card.suit]);
+            mvwprintw(window, y+1, 0, "│%c   %lc│", RANK[static_cast<int>(card.rank)], SUIT[static_cast<int>(card.suit)]);
         }
     }
     // reset color
@@ -211,7 +212,7 @@ string listenInput(WINDOW * &window){
     wclear(window);
     char input;
     string temp;
-    for (int i = 1; i < 4; ++i){
+    for (int i = 1; i < sizeof(temp); ++i){
         input = wgetch(window);
         temp += tolower(input);
         wdelch(window);
@@ -224,6 +225,8 @@ string listenInput(WINDOW * &window){
             case 2:
                 if (convertCard(temp) != -1)
                     return temp;
+                else if (temp == "10")
+                    temp = "t";
                 break;
             case 3:
                 return temp;

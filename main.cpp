@@ -1,6 +1,8 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include <ncurses.h>
+#include <locale.h>
 #include "gui.h"
 #include "guiTemp.h"
 #include "initTable.h"
@@ -8,7 +10,6 @@
 #include "checkInput.h"
 #include "card.h"
 #include "redoUndo.h"
-#include <locale.h>
 #include "checkWin.h"
 #include "saveLoadFile.h"
 #include <ncurses.h>
@@ -54,6 +55,12 @@ int main(){
         // initialize the menu window with 15 row and 40 columns, start at (20,40)
         menu = newwin(15, 26, 20, 47);
         int status = printMenu(menu);
+        // status = 4 means exit
+        if (status == 4){
+                delwin(menu);
+	            endwin();
+                exit(0);
+        }
         // start new game
         if (status==0){
             refresh();
@@ -100,6 +107,7 @@ int main(){
     // Ptr p to store the information of the table
     Ptr ptr;
     bool newAnyway = true;
+    cout << table[0].size() << endl;
     if (load){
         // load game
         int loadfail = loadGame(table, ptr, cardMap);
@@ -116,11 +124,9 @@ int main(){
         // initialize a winnable deck
         initWinnableDeck(deck, difficulty);
         initTable(table, cardMap, deck);
-        std::cout << "Deck initialized!" << endl;
         // free memory from deck
-        delete [] deck;
-        deck = nullptr;
     }
+    // free memory from deck
     delete [] deck;
     deck = nullptr;
     
@@ -166,6 +172,7 @@ int main(){
     inputWindow = newwin(1, 120, 39, 1);
     mvprintw(LINES - 2, 1, "                              ");
     // refresh the windows
+    echo();
     refresh();
 
     // update the top status window

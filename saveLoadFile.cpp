@@ -64,13 +64,29 @@ int loadGame(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap){
             break;
         }
 
-        intrank = stoi(rank) + suit*13;
+        intrank = stoi(rank);
         iss >> shown >> column >> row;
+        bool show;
+        if (shown == 1){
+            show = true;
+        }
+        else{
+            show = false;
+        }
         subTable[column][row].rank = intrank;
         subTable[column][row].suit = Card::Suit(suit);
-        subTable[column][row].shown = shown;
-        cardMap[intrank-1] = {column, row};
+        subTable[column][row].shown = static_cast<bool>(shown);
+        cardMap[intrank-1 + suit*13] = {column, row};
         table[column].push_back(subTable[column][row]);
+        // reset stock deck
+        p.next = 0;
+        p.target = 0;
+        p.row = 0;
+        p.column = 0;
+        p.move = 0;
+        for (int i = 0; i < table[7].size(); ++i) {
+            table[column][i].shown = false;
+        }
     }
 
     loadFile.close();
