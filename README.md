@@ -117,6 +117,17 @@ Program functions are stored separately in different files, including “checkIn
 - locale.h  
 
 ## Compilation and execution instruction
+The is no additional configuration required.
+However, running in Windows should be avoided. Only run on Linux/UNIX based systems.
+```
+make run
+```
+if the make fail, please install ncurses library:
+- MacOS
+```brew install ncurses```
+- Linux
+```sudo apt-get install libncursesw```
+
 ## Group members
 Cheung Yan Shek, UID: 3036065575, Github username: namelessxxv
 
