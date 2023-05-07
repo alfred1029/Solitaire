@@ -5,11 +5,11 @@
 #include "redoUndo.h" // singleProcess
 
 bool detectPreviousCommand(string command, string previousCommand){
-    if(previousCommand == "undo" && (command != "redo" && command != "undo")){
+    if(previousCommand == "u" && (command != "r" && command != "u")){
         //going to delete exceed process
         return true;
     }
-    else if(previousCommand == "redo" && (command != "redo" && command != "undo")){
+    else if(previousCommand == "r" && (command != "r" && command != "u")){
         //going to delete exceed process
         return true;
     }      

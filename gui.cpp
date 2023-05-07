@@ -1,21 +1,25 @@
 #include"card.h"
-#include <ncurses.h>
+#include "checkInput.h"
 #include"gui.h"
 #include <vector>
 #include <string>
-#include "checkInput.h"
+#include <ncurses.h>
 
 using namespace std;
 
-// This function will draw the top part of the card
+// Function drawCardTop will draw the top part of the card
 // ╭─────╮
 // │7   ♦│ for 7 of Diamond
+// Input: Card &card, the card to draw
+//        WINDOW * &window, the window to draw
+//        int y, the start position of y
+// Output: Void, but the corresponding window will be updated with the card drawn
 void drawCardTop(Card &card, WINDOW * &window, int y){
     // set solor if card red
     if (card.suit%2==0 && card.shown)
         wattron(window, COLOR_PAIR(1));
     // draw the top part of the card
-    // if the card is not shown, draw the dashed line
+    // if the card is not shown, draw the line only
     mvwprintw(window, y, 0, "╭─────╮");
     if(!card.shown){
         mvwprintw(window, y+1, 0, "│     │");
@@ -23,9 +27,11 @@ void drawCardTop(Card &card, WINDOW * &window, int y){
     // if the card is shown, draw the rank and suit
     else{
         if (card.rank == 10){
+            // get the unicode of suit from SUIT array defined in gui.h
             mvwprintw(window, y+1, 0, "│10  %lc│", SUIT[card.suit]);  
         }
         else{
+            // get the ascii of rank and unicode of suit from RANK and SUIT array defined in gui.h
             mvwprintw(window, y+1, 0, "│%c   %lc│", RANK[card.rank], SUIT[card.suit]);
         }
     }
@@ -33,11 +39,16 @@ void drawCardTop(Card &card, WINDOW * &window, int y){
     wattroff(window, COLOR_PAIR(1));
 }
 
-// This function will draw the rest part of the card, for the card is not under another card
-// Pass the <vector<vector<Card>>> table, and the window to draw, the start position of y, the card
-// The card will look like this
-// │    │
-// └────┘
+
+
+// drawCardBottom function will draw the bottom part of the card, for the card is not under another card
+// It will look like this
+// │     │
+// │     │
+// ╰─────╯
+// Input: WINDOW * &window, the window to draw
+//        int y, the start position of y
+// Output: Void, but the corresponding window will be updated with the card drawn
 void drawCardBottom(Card &card, WINDOW * &window, int y){
     // set solor if card red
     if (card.suit%2==0 && card.shown)
@@ -50,7 +61,27 @@ void drawCardBottom(Card &card, WINDOW * &window, int y){
     wattroff(window, COLOR_PAIR(1));
 
 }
-void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
+
+
+// updateStock function will draw the stock deck
+// Clear the window, pass the stock deck table[7] and the window of stock deck to drawCardTop and drawCardBottom, and update the window
+// The stock deck window will look like this
+// ╭────╮
+// │    │
+// │    │
+// ╰────╯
+// ╭────╮
+// │6  ♠│
+// ╭────╮
+// │2  ♠│
+// ╭────╮
+// │9  ♠│
+// │    │
+// ╰────╯
+// Input: vector<vector<Card> > &table, the stock deck is table[7]
+//        WINDOW * &window, the window to draw
+// Output: Void, but the corresponding window (WINDOW * window) of stock deck will be updated with the stock deck drawn
+void updateStock(vector<vector<Card> > &table, WINDOW * &window){
     // draw the stock deck
     wclear(window);
     int y = 0;
@@ -72,8 +103,9 @@ void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
     wrefresh(window);
 }
 
-// This function will draw the stack deck
-// Pass the <vector<vector<Card>>> table, and the window to draw, Ptr &ptr
+
+// dateStack function will draw the stack deck
+// Clear the window, Pass the table[8], and the window to draw to drawCardTop and drawCardBottom, and update the window
 // The window will look like this
 // ╭────╮
 // │   ♦│
@@ -91,7 +123,10 @@ void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
 // │   ♠│
 // │    │
 // ╰────╯
-void updateStack(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
+// Input: vector<vector<Card> > &table, the stack deck is table[8]
+//        WINDOW * &window, the window to draw
+// Output: Void, but the corresponding window (WINDOW * window) of stack deck will be updated with the stack deck drawn
+void updateStack(vector<vector<Card> > &table, WINDOW * &window){
     // draw the stack deck
     wclear(window);
     int y = 0;
@@ -104,8 +139,9 @@ void updateStack(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
     wrefresh(window);
 }
 
-// This function will draw the column deck
-// Pass the <vector<vector<Card>>> table, and the window to draw, Ptr &ptr, the column number
+
+// updateColumn function will draw the column deck
+// Clear the window, Pass the table[column], and the window to draw to drawCardTop and drawCardBottom, and update the window
 // The window will look like this
 // ╭────╮
 // │    │
@@ -115,8 +151,11 @@ void updateStack(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
 // │9  ♠│
 // │    │
 // ╰────╯
-
-void updateColumn(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr, int column){
+// Input: vector<vector<Card> > &table, the column deck is table[column]
+//        WINDOW * &window, the window to draw
+//        int column, indicate which column to draw
+// Output: Void, but the corresponding window (WINDOW * window) of column deck will be updated with the column deck drawn
+void updateColumn(vector<vector<Card> > &table, WINDOW * &window, int column){
     // draw the column deck
     wclear(window);
     int y = 0;
@@ -132,9 +171,12 @@ void updateColumn(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr, int 
     wrefresh(window);
 }
 
-// This function will draw the Top status window
-// Pass the Ptr &ptr, the move and score
 
+// updateTopStatus function will clear and then draw the Top status window, i.e. Move: 0      Score: 0
+// Input: WINDOW * &window, the window to draw
+//        Ptr &ptr, struct Ptr defined in card.h, which contains in game information with members: int move, int score, int column, int row, int target, int next
+//                  ptr.move and ptr.score will be used here
+// Output: Void, but the corresponding window (WINDOW * window) of top status window will be updated with the value of ptr.move and ptr.score
 void updateTopStatus(WINDOW * &window, Ptr &ptr){
     // draw the top status window
     // draw the move and score
@@ -146,9 +188,11 @@ void updateTopStatus(WINDOW * &window, Ptr &ptr){
     wrefresh(window);
 }
 
-// This function will draw the bottom status window
-// Pass the message string
 
+// updateBottomStatus function will clear and then draw the bottom status window, output a message with string message
+// Input: WINDOW * &window, the window to draw
+//        string message, the message to output
+// Output: Void, but the corresponding window (WINDOW * window) of bottom status window will be updated with the message input
 void updateBottomStatus(WINDOW * &window, string message){
     wclear(window);
     // draw the bottom status window
@@ -157,10 +201,10 @@ void updateBottomStatus(WINDOW * &window, string message){
     wrefresh(window);
 }
 
-// This function will listen to the keyboard input and output a string
-// Pass the window to listen
-// Return the string
 
+// listenInput function will clear the window and listen to the keyboard input (1 - 3 characters), convert in lower case and output a string
+// Input: WINDOW * &window, the window to listen
+// Output: string, the string of the combined keyboard input (1 - 3 characters)
 string listenInput(WINDOW * &window){
     // listen to the keyboard input
     refresh();
@@ -169,12 +213,12 @@ string listenInput(WINDOW * &window){
     string temp;
     for (int i = 1; i < 4; ++i){
         input = wgetch(window);
-        temp += input;
+        temp += tolower(input);
         wdelch(window);
         switch (i)
         {
             case 1:
-                if (temp == "f" || temp == "e" || temp == "u" || temp == "u")
+                if (temp == "f" || temp == "e" || temp == "r" || temp == "u")
                     return temp;
                 break;
             case 2:

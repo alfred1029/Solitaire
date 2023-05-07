@@ -5,7 +5,10 @@
 
 using namespace std;
 
-// GUI for testing
+// This is the GUI for testing purpose, it will print the table with stock deck, stack deck and 7 columns, the score and move
+// Input: vector<vector<Card>> &table, the table to print
+//        Ptr &p, struct Ptr defined in initTable.h, contains the score and move
+// Output: Void, no modification of elements, only cout the table, score and move
 void printTable(vector<vector<Card>> &table, Ptr &p) {
     cout << "Move: " << p.move << "       Score: " << p.score << endl;
     cout << "Stack: ";
@@ -35,7 +38,9 @@ void printTable(vector<vector<Card>> &table, Ptr &p) {
     cout << "Please enter command: ";
 }
 
-// convert card to string
+// getString convert struct Card t to string
+// Input: Card &t, the card to convert
+// Output: string, the string representation of the card
 string getString(Card &t) {
     string card;
     switch (t.suit) {
