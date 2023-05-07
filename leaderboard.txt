@@ -1,11 +1,12 @@
 
  ------ Leaderboard ------ 
                         
-   1 >   T. W. Chim 9999
-   2 >    ChatGPT   999
-   3 >  Alfred Wong 240
-   4 > Sheky Cheung 230
-   5 >  Samuel Hui  220
-   6 >   Billy Hong 210
-   7 >    Ally Wun  200
+   1 >   Dr. Chim   9999
+   1 >   Dr. Qian   9999
+   2 >    ChatGPT    999
+   3 >  Alfred Wong  240
+   4 > Sheky Cheung  230
+   5 >  Samuel Hui   220
+   6 >   Billy Hong  210
+   7 >    Ally Wun   200
 
