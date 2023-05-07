@@ -11,7 +11,6 @@
 #include "redoUndo.h"
 #include "checkWin.h"
 #include "saveLoadFile.h"
-#include <ncurses.h>
 
 
 using namespace std;
@@ -140,11 +139,11 @@ int main(){
     saveProcess(table, ptr, cardMap, processes);
 
     // ------------------------------------------ GUI ------------------------------------------
-    static WINDOW *topStatus, *stock, *stack, *column[7], *bottomStatus, *inputWindow;
+    static WINDOW *topStatus, *stock, *stack, *column[7], *bottomStatus, *inputWindow, *commandWindow;
     // initialize the top status window with 1 row and 90 columns, start at (0,0)
     topStatus = newwin(1, 120, 0, 1);
     // initialize the stock window with 36 rows and 10 columns, start at (2,0)
-    stock = newwin(36, 13, 2, 12);
+    stock = newwin(20, 13, 2, 12);
     // initialize the stack window with 36 rows and 10 columns, start at (2,80)
     stack = newwin(36, 13, 2, 95);
     // initialize the column window 0-6 with 36 rows and 10 columns each, start at (2,10)
@@ -155,6 +154,8 @@ int main(){
     column[4] = newwin(36, 10, 2, 65);
     column[5] = newwin(36, 10, 2, 75);
     column[6] = newwin(36, 10, 2, 85);
+    // initialize command window
+    commandWindow = newwin(11, 22, 26, 2);
     // initialize the bottom status window with 1 row and 90 columns, start at (38,0)
     bottomStatus = newwin(1, 120, 38, 1);
     // initialize the input window with 1 row and 90 columns, start at (39,0)
@@ -176,6 +177,21 @@ int main(){
     updateStack(table, stack);
     // update the bottom status window
     updateBottomStatus(bottomStatus, message);
+    // print command window
+    // initialize ifstream
+    std::ifstream fin;
+    // open logo bitmap
+    fin.open("bitmap/command.txt");
+    std::string line;
+    // print line by line
+    int i=0;
+    while (getline(fin, line) && i<11){
+        mvwprintw(commandWindow, i, 0, line.c_str());
+        i++;
+        }
+        wrefresh(commandWindow);
+    // close the file
+    fin.close();
 
 
     // listen to user input
