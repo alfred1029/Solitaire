@@ -11,6 +11,9 @@ using namespace std;
 // ╭─────╮
 // │7   ♦│ for 7 of Diamond
 void drawCardTop(Card &card, WINDOW * &window, int y){
+    // set solor if card red
+    if (card.suit%2==0 && card.shown)
+        wattron(window, COLOR_PAIR(1));
     // draw the top part of the card
     // if the card is not shown, draw the dashed line
     mvwprintw(window, y, 0, "╭─────╮");
@@ -26,6 +29,8 @@ void drawCardTop(Card &card, WINDOW * &window, int y){
             mvwprintw(window, y+1, 0, "│%c   %lc│", RANK[card.rank], SUIT[card.suit]);
         }
     }
+    // reset color
+    wattroff(window, COLOR_PAIR(1));
 }
 
 // This function will draw the rest part of the card, for the card is not under another card
@@ -33,11 +38,16 @@ void drawCardTop(Card &card, WINDOW * &window, int y){
 // The card will look like this
 // │    │
 // └────┘
-void drawCardBottom(WINDOW * &window, int y){
+void drawCardBottom(Card &card, WINDOW * &window, int y){
+    // set solor if card red
+    if (card.suit%2==0 && card.shown)
+        wattron(window, COLOR_PAIR(1));
     // draw the rest part of the card
     mvwprintw(window, y, 0, "│     │");
     mvwprintw(window, y+1, 0, "│     │");
     mvwprintw(window, y+2, 0, "╰─────╯");
+    // reset color
+    wattroff(window, COLOR_PAIR(1));
 
 }
 void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
@@ -46,16 +56,17 @@ void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
     int y = 0;
     Card card = {0,Card::Suit(1),false};
     drawCardTop(card, window, y);
-    drawCardBottom(window, y+2);
+    drawCardBottom(card, window, y+2);
     y += 5;
     for (int i = 0; i < table[7].size(); ++i){
         if (table[7][i].shown == true) {
             drawCardTop(table[7][i], window, y);
+            card = table[7][i];
             y += 2;
         }
     }
     if (y>5){
-        drawCardBottom(window, y);
+        drawCardBottom(card, window, y);
     }
     // refresh the stock window
     wrefresh(window);
@@ -86,7 +97,7 @@ void updateStack(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr){
     int y = 0;
     for (int i = 0; i < 4; ++i){
         drawCardTop(table[8][i], window, y);
-        drawCardBottom(window, y+2);
+        drawCardBottom(table[8][i], window, y+2);
         y += 5;
     }
     // refresh the stack window
@@ -116,7 +127,7 @@ void updateColumn(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr, int 
     }
     // draw the rest part of the card
     if (table[column].size() != 0)
-        drawCardBottom(window, y);
+        drawCardBottom(table[column].back(), window, y);
     // refresh the column window
     wrefresh(window);
 }
@@ -130,6 +141,7 @@ void updateTopStatus(WINDOW * &window, Ptr &ptr){
     wclear(window);
     mvwprintw(window, 0, 0, "Move: %d", ptr.move);
     mvwprintw(window, 0, 20, "Score: %d", ptr.score);
+    mvwprintw(window, 0, 55, "SOLITAIRE");
     // refresh the top status window
     wrefresh(window);
 }
@@ -151,6 +163,7 @@ void updateBottomStatus(WINDOW * &window, string message){
 
 string listenInput(WINDOW * &window){
     // listen to the keyboard input
+    refresh();
     wclear(window);
     char input;
     string temp;
@@ -174,7 +187,6 @@ string listenInput(WINDOW * &window){
                 break;
         }
     }
-
     wrefresh(window);
     return temp;
 }

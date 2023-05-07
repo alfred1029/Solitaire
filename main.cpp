@@ -12,35 +12,6 @@
 
 using namespace std;
 
-// This function will setup the windows
-void setupWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &inputWindow){
-    topStatus = newwin(1, 120, 0, 1);
-    // initialize the stock window with 16 rows and 10 columns, start at (2,0)
-    stock = newwin(16, 10, 2, 16);
-    // initialize the stack window with 20 rows and 10 columns, start at (2,80)
-    stack = newwin(20, 10, 2, 95);
-    // initialize the column window 0-6 with 36 rows and 10 columns each, start at (2,10)
-    for (int i = 0; i < 7; i++){
-        column[0] = newwin(36, 10, 2, (i+1)*10);
-    }
-    // initialize the bottom status window with 1 row and 120 columns, start at (38,0)
-    bottomStatus = newwin(1, 120, 38, 1);
-    // initialize the input window with 1 row and 120 columns, start at (39,0)
-    inputWindow = newwin(1, 120, 39, 1);
-}
-
-// This function will delete the windows
-void deleteWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &inputWindow){
-    delwin(topStatus);
-    delwin(stock);
-    delwin(stack);
-    for (int i = 0; i < 7; i++){
-        delwin(column[i]);
-    }
-    delwin(bottomStatus);
-    delwin(inputWindow);
-}
-
 int main(){
     string difficulty = "easy";
     /*
@@ -149,7 +120,7 @@ int main(){
     // initialize the windows
     static WINDOW *topStatus, *stock, *stack, *column[7], *bottomStatus, *inputWindow;
     // initialize the top status window with 1 row and 90 columns, start at (0,0)
-    topStatus = newwin(1, 120, 0, 0);
+    topStatus = newwin(1, 120, 0, 1);
     // initialize the stock window with 36 rows and 10 columns, start at (2,0)
     stock = newwin(36, 13, 2, 12);
     // initialize the stack window with 36 rows and 10 columns, start at (2,80)
@@ -297,74 +268,6 @@ int main(){
         }
         command = listenInput(inputWindow);
     }
- /*       
-        // print table and ask for command
-        printTable(table, ptr);
-        // get command and check if it is valid
-        cin >> command;
-        std::cout << command << " "<<previousCommand<<endl;
-        //check if command is valid
-        valid = checkValid(table, cardMap, ptr, command);
-
-        //detect command and previous command
-        if (detectPreviousCommand(command, previousCommand)){
-            //delete exceed process
-            deleteProcess(table,ptr,cardMap,processes); 
-            std::cout << "delete succeed" << endl;
-        }
-
-        std::cout << "before move++"<<ptr.move<<' '<<processes.size()<<endl;
-
-        // if valid, pass it to corresponding function
-        switch (valid){
-            case 1:
-                // if valid == 1, flip the stock deck
-                flipStock(table, ptr);//ptr.move++
-                //save process
-                saveProcess(table, ptr, cardMap, processes);
-                break;
-            case 2:
-                // if valid == 2, move card to column
-                findTarget(table, ptr);
-                if (ptr.target == -1){
-                    std::cout << "No possible move!" << endl;
-                    break;
-                }
-                moveCard(table, cardMap, ptr);//ptr.move++
-                //save process
-                saveProcess(table, ptr, cardMap, processes);
-                break;
-            case 3:
-                std::cout << "valid = 3" << endl;
-                // if valid == 3, move card to stack
-                findStack(table, ptr);
-                if (ptr.target == -1){
-                    std::cout << "No possible move!" << endl;
-                    break;
-                }
-                moveCard(table, cardMap, ptr);//move++
-                //save process
-                saveProcess(table, ptr, cardMap, processes);
-                break;
-            case 4:
-                //if valid == 4, redo the process
-                if(ptr.move <processes.size())
-                    redo(table, ptr, cardMap, processes);
-                std::cout<<"redo successful!"<<endl;
-                break;
-            case 5:
-                //if valid == 5, undo the process
-                if(ptr.move >= 0)
-                    undo(table, ptr, cardMap, processes);
-                std::cout<<"undo successful!"<<endl;
-                break;
-            default:
-                // if valid == -1, print invalid input
-                std::cout << "Invalid input!" << endl;
-        }
-        std::cout<<"after move++"<<ptr.move<<' '<<processes.size()<<endl;
-        previousCommand = command;
-*/
     // free memory from table
     delwin(topStatus);
     delwin(stock);
