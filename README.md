@@ -38,7 +38,7 @@ Drawing cards from the stock:
 How to play: 
 1. Flip the stock deck 
  -enter 'f' 
-2. Move card 
+2. Move card  
  -enter number {2,3,4,5,6,7,8,9,10,j,q,k,a}  
  -enter types {d,c,h,s} for Diamond, Club, Heart, Spade  
  for example d2 for Diamond 2 and qc for Club queen  
