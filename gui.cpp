@@ -217,7 +217,6 @@ string listenInput(WINDOW * &window){
                 break;
         }
     }
-
     wrefresh(window);
     return temp;
 }

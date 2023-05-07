@@ -10,6 +10,7 @@
 #include "redoUndo.h"
 #include <locale.h>
 #include "checkWin.h"
+#include "initWinnableDeck.h"
 
 using namespace std;
 
@@ -214,6 +215,33 @@ int main(){
             case 6:
                 //if valid == 6, exit the game
                 message = "My friend, " + userName + ", Are you sure you want to exit? (y/n)";
+                updateBottomStatus(bottomStatus, message);
+                wclear(inputWindow);
+                yesNo = wgetch(inputWindow);
+                if (tolower(yesNo) == 'y'){
+                    //exit the game
+                    message = "Bye! " + userName + ", See you next time!";
+                    updateBottomStatus(bottomStatus, message);
+                    napms(500);
+                    delwin(topStatus);
+                    delwin(stock);
+                    delwin(stack);
+                    for (int i = 0; i < 7; i++){
+                        delwin(column[i]);
+                        delwin(bottomStatus);
+                        delwin(inputWindow);
+                        endwin();
+                        exit(0);
+                    }
+                }
+                else{
+                    message = "Welcome back! " + userName + ", Please enter command:";
+                    updateBottomStatus(bottomStatus, message);
+                }
+                break;
+            case 7:
+                saveGame(table, ptr, cardMap, processes);
+                message = "Game saved!" + userName + ", exit the game? (y/n)";
                 updateBottomStatus(bottomStatus, message);
                 wclear(inputWindow);
                 yesNo = wgetch(inputWindow);

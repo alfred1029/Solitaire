@@ -1,13 +1,3 @@
-/*  move.cpp contain all the movement function of solitaire games 
-    1. flipStock
-        - flip the stock deck
-    2. move
-        1. move card(s) from column to column
-        2. move card(s) from column to stack
-        3. move card(s) from stock to column
-        4. move card(s) from stock to stack
-        5. move card(s) from stack to column
-*/
 #include "card.h"
 #include "move.h"
 #include <vector>
@@ -16,8 +6,9 @@
 
 using namespace std;
 
-/* Function to flip the stock deck */
 
+// Function to flip the stock deck, i.e. table[7], the next card not shown will be shown, if there is more than 3 cards shown, the prev cards will be hidden
+// 
 void flipStock(vector<vector<Card> > &table, Ptr &p){
     // next is the index of next card to be shown
     if (table[7][p.next].shown == false){

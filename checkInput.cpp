@@ -72,6 +72,8 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
             }   
             break;
         case 3:
+            if (input == "sav")
+                valid = 7;
             if (input[2] != 's')
                 break; 
             // if input[2] == s
