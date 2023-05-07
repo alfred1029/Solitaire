@@ -42,13 +42,13 @@ How to play:
  -enter number {2,3,4,5,6,7,8,9,10,j,q,k,a}  
  -enter types {d,c,h,s} for Diamond, Club, Heart, Spade  
  for example d2 for Diamond 2 and qc for Club queen  
-3. Undo 
+3. Undo  
  -enter 'undo'  
-4. Redo 
+4. Redo  
  -enter 'redo'  
-5. Save game progress (Please do not delete the saveGame.txt or else the game progress will be deleted) 
+5. Save game progress (Please do not delete the saveGame.txt or else the game progress will be deleted)  
  -enter 'save'  
-6. Exit wihout saving 
+6. Exit wihout saving  
  -enter 'exit  
 
 Scoring method: 
