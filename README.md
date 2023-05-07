@@ -142,6 +142,10 @@ However, only **Linux/UNIX** compatability is guaranteed. **Running in Windows S
 ```
 make run
 ```
+Run the game (window size: **120x40 fixed**)
+```
+./main
+```
 if the make fail, please install ncurses library:
 - MacOS
 ```brew install ncurses```
