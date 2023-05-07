@@ -94,7 +94,7 @@ int main(){
     wclear(logo);
     wclear(background);
     wclear(menu);
-    endwin();
+    // endwin();
     
 
     // store process
@@ -139,18 +139,8 @@ int main(){
     int valid;
     //save the initial process
     saveProcess(table, ptr, cardMap, processes);
-    // game loop
-
-
-    initscr();
-    // hide the cursor
-    curs_set(0);
-    // initialize the color
-    start_color();
-    // initialize the color pair, RED for hearts and diamonds, BLACK for spades and clubs
-    init_pair(1, COLOR_RED, -1);
-    init_pair(2, COLOR_BLACK, -1);
-    // initialize the windows
+    
+    // ------------------------------------------ GUI ------------------------------------------
     static WINDOW *topStatus, *stock, *stack, *column[7], *bottomStatus, *inputWindow;
     // initialize the top status window with 1 row and 90 columns, start at (0,0)
     topStatus = newwin(1, 120, 0, 1);

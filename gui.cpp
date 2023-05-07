@@ -29,11 +29,11 @@ void drawCardTop(Card &card, WINDOW * &window, int y){
     else{
         if (card.rank == 10){
             // get the unicode of suit from SUIT array defined in gui.h
-            mvwprintw(window, y+1, 0, "│10  %lc│", SUIT[static_cast<int>(card.suit)]);  
+            mvwprintw(window, y+1, 0, "│10  %lc│", SUIT[card.suit]);  
         }
         else{
             // get the ascii of rank and unicode of suit from RANK and SUIT array defined in gui.h
-            mvwprintw(window, y+1, 0, "│%c   %lc│", RANK[static_cast<int>(card.rank)], SUIT[static_cast<int>(card.suit)]);
+            mvwprintw(window, y+1, 0, "│%c   %lc│", RANK[card.rank], SUIT[card.suit]);
         }
     }
     // reset color

@@ -46,16 +46,10 @@ int loadGame(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap){
         return 1;
     }
 
-    Card subTable [9][28];
-    for (int i = 0; i < 9; ++i) {
-        for (int j = 0; j < 28; ++j) {
-
-        subTable[i][j] = {-1,Card::Suit(0),false};
-        }
-    }
     string line;
     string rank;
     int intrank, suit, shown, column, row;
+    Card temp;
     while (getline(loadFile, line)){
         istringstream iss(line);
         iss >> rank >> suit;
@@ -66,27 +60,24 @@ int loadGame(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap){
 
         intrank = stoi(rank);
         iss >> shown >> column >> row;
-        bool show;
-        if (shown == 1){
-            show = true;
-        }
-        else{
-            show = false;
-        }
-        subTable[column][row].rank = intrank;
-        subTable[column][row].suit = Card::Suit(suit);
-        subTable[column][row].shown = static_cast<bool>(shown);
+        
+        temp.rank = intrank;
+        temp.suit = Card::Suit(suit);
+        temp.shown = shown;
+        table[column].push_back(temp);
         cardMap[intrank-1 + suit*13] = {column, row};
-        table[column].push_back(subTable[column][row]);
-        // reset stock deck
+        
+        }
         p.next = 0;
-        p.target = 0;
+        p.target = -1;
         p.row = 0;
         p.column = 0;
         p.move = 0;
         for (int i = 0; i < table[7].size(); ++i) {
-            table[column][i].shown = false;
+            table[7][i].shown = false;
         }
+        for (int i = 0; i < table[8].size(); ++i) {
+            table[8][i].shown = true;
     }
 
     loadFile.close();
