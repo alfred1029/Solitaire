@@ -7,8 +7,10 @@
 using namespace std;
 
 
-// Function to flip the stock deck, i.e. table[7], the next card not shown will be shown, if there is more than 3 cards shown, the prev cards will be hidden
-// 
+// Function to flip the stock deck, i.e. table[7], the next card not shown will be shown, if there is more than 3 cards shown, the prev >3 cards will be hidden
+// Input: vector<vector<Card> > &table, the cards in the game table
+//        Ptr &p, struct Ptr stores the information of the game, defined in card.h, p.next is the index of next card to be shown
+// Output: void, but the table[7] will be updated, p.move +1 and p.next +1 (reset to 0 if equals the size of table[7] -1, score will be deducted by 100 if p.score >= 100, else p.score will be set to 0)
 void flipStock(vector<vector<Card> > &table, Ptr &p){
     // next is the index of next card to be shown
     if (table[7][p.next].shown == false){
@@ -38,8 +40,11 @@ void flipStock(vector<vector<Card> > &table, Ptr &p){
     ++p.move;
 }
 
-/* Function to move card(s) from column to column*/
-
+// Function to move the card(s) from source (stock deck, column, stack piles) to target column or stack
+// Input: vector<vector<Card> > &table, the cards in the game table
+//        vector<CardMap> &cardMap, defined in card.h, cardMap[52] store the column and row of the card, where index 0 is A of Diamond to index 51 is K of Spade
+//        Ptr &p, struct Ptr stores the information of the game, defined in card.h
+// Output: void, but the table and cardMap will be updated, and p.score will be updated
 void moveCard(vector<vector<Card> > &table, vector<CardMap> &cardMap, Ptr &p){
     // fill the taget column with the card(s) from the source column
     if (p.column == 8){

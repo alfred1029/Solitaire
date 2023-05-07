@@ -36,7 +36,6 @@ int main(){
     // initialize a winnable deck (to be debbuged)
     initWinnableDeck(deck, difficulty);
     initTable(table, cardMap, deck);
-    std::cout << "Deck initialized!" << endl;
     // free memory from deck
     delete [] deck;
     deck = nullptr;
@@ -101,10 +100,11 @@ int main(){
     // update the bottom status window
     updateBottomStatus(bottomStatus, message);
 
-    //cursor shown
 
+    // listen to user input
     command = listenInput(inputWindow);
 
+    // ------------------------------------------ game loop ------------------------------------------
     while (true)
     {   
         //get user input
@@ -127,7 +127,7 @@ int main(){
                 updateTopStatus(topStatus, ptr);
                 break;
             case 2:
-                // if valid == 2, move card to column
+                // if valid == 2, move card to column or stack, priority: column > stack
                 findTarget(table, ptr);
                 if (ptr.target == -1){
                     message = "No possible move! " + userName + ", Please enter command:";
@@ -241,7 +241,7 @@ int main(){
                 }
                 break;
             case 7:
-                saveGame(table, ptr, cardMap, processes);
+                saveGame(table, ptr);
                 message = "Game saved!" + userName + ", exit the game? (y/n)";
                 updateBottomStatus(bottomStatus, message);
                 wclear(inputWindow);
@@ -274,104 +274,33 @@ int main(){
                 break;
         }
         if (checkWin(table)){
-            message = "Congratulations! You win! " + userName + ", Restart the game? (y/n)";
+            message = "Congratulations! You win! " + userName + ", Your score is: " + to_string(ptr.move) + ", Press any key to exit.";
             updateBottomStatus(bottomStatus, message);
             wclear(inputWindow);
-            yesNo = wgetch(inputWindow);
-            if (tolower(yesNo) == 'y'){
-                //reset the game
-                //resetGame(table, ptr, cardMap, processes);
-                // update the top status window
-                updateTopStatus(topStatus, ptr);
-                // update the stock window 
-                updateStock(table, stock);
-                // update the column window
-                for (int i = 0; i < 7; i++){
-                    updateColumn(table, column[i], i);
+            getch();
+            //exit the game
+            message = "Bye! " + userName + ", See you next time!";
+            updateBottomStatus(bottomStatus, message);
+            napms(500);
+
+            // free memory from table
+            delwin(topStatus);
+            delwin(stock);
+            delwin(stack);
+            for (int i = 0; i < 7; i++){
+                delwin(column[i]);
                 }
-                // update the stack window
-                updateStack(table, stack);
-                // update the bottom status window
-                message = "Game restarted! " + userName + ", Please enter command:";
-                updateBottomStatus(bottomStatus, message);
-            }
-            else{
-                break;
-            }
+            delwin(bottomStatus);
+            delwin(inputWindow);
+            endwin();
+            exit(0);
         }
         //save the last command
         prevCommand = command;
         // listen to the user input
         command = listenInput(inputWindow);
     }
- /*       
-        // print table and ask for command
-        printTable(table, ptr);
-        // get command and check if it is valid
-        cin >> command;
-        std::cout << command << " "<<previousCommand<<endl;
-        //check if command is valid
-        valid = checkValid(table, cardMap, ptr, command);
-
-        //detect command and previous command
-        if (detectPreviousCommand(command, previousCommand)){
-            //delete exceed process
-            deleteProcess(table,ptr,cardMap,processes); 
-            std::cout << "delete succeed" << endl;
-        }
-
-        std::cout << "before move++"<<ptr.move<<' '<<processes.size()<<endl;
-
-        // if valid, pass it to corresponding function
-        switch (valid){
-            case 1:
-                // if valid == 1, flip the stock deck
-                flipStock(table, ptr);//ptr.move++
-                //save process
-                saveProcess(table, ptr, cardMap, processes);
-                break;
-            case 2:
-                // if valid == 2, move card to column
-                findTarget(table, ptr);
-                if (ptr.target == -1){
-                    std::cout << "No possible move!" << endl;
-                    break;
-                }
-                moveCard(table, cardMap, ptr);//ptr.move++
-                //save process
-                saveProcess(table, ptr, cardMap, processes);
-                break;
-            case 3:
-                std::cout << "valid = 3" << endl;
-                // if valid == 3, move card to stack
-                findStack(table, ptr);
-                if (ptr.target == -1){
-                    std::cout << "No possible move!" << endl;
-                    break;
-                }
-                moveCard(table, cardMap, ptr);//move++
-                //save process
-                saveProcess(table, ptr, cardMap, processes);
-                break;
-            case 4:
-                //if valid == 4, redo the process
-                if(ptr.move <processes.size())
-                    redo(table, ptr, cardMap, processes);
-                std::cout<<"redo successful!"<<endl;
-                break;
-            case 5:
-                //if valid == 5, undo the process
-                if(ptr.move >= 0)
-                    undo(table, ptr, cardMap, processes);
-                std::cout<<"undo successful!"<<endl;
-                break;
-            default:
-                // if valid == -1, print invalid input
-                std::cout << "Invalid input!" << endl;
-        }
-        std::cout<<"after move++"<<ptr.move<<' '<<processes.size()<<endl;
-        previousCommand = command;
-*/
+    //exit the game
     message = "Bye! " + userName + ", See you next time!";
     updateBottomStatus(bottomStatus, message);
     napms(500);
