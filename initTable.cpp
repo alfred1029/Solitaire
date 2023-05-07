@@ -29,9 +29,12 @@ void initRandomDeck(Card deck[]) {
     shuffle(deck, deck + 52, g);
 
 }
-/* Function initWinnableDeck import a winndable deck from winningDeck.txt
+/* Function initWinnableDeck import a winndable deck from winningDeck.txt to Card deck[52] with string difficulty
+    different difficulty will select different range of random number to read a line from winningDeck.txt
+    
    Input: Card deck[52], deck is an array with type Card where Card is a struct defined in Card.h with 3 members: int rank, enum Suit::suit, bool shown
           string difficulty, with 3 options: "easy", "medium", "hard", this will select 3 ranges of random number to read a line from winningDeck.txt  
+
    Output: Void, but Card deck[52] is passed by reference, it will write the array element with a deck of 52 cards with random order
     */
 // initialize a winnable deck
@@ -93,10 +96,13 @@ void initWinnableDeck(Card deck[], string difficulty){
     fin.close();
 }
 
-/*  Function initTable inititalize the game table
+/*  Function initTable inititalize the game table, table[0] to table[6] with 1 to 7 elements(cards), table[7] with 24 elements, table[8] with 4 elements(cards with 0 rank)
+    where Card is a struct defined in Card.h with 3 members: int rank, enum Suit::suit, bool shown
+
     Input:  vector<vector<Card>> &table, table is a nested vector where Card is a struct defined in Card.h with 3 members: int rank, enum Suit::suit, bool shown
             vector<CardMap> &cardMap, cardMap is a vector where CardMap is a struct defined in Card.h with 2 members: int row, int column
             Card deck[52], where Card is a struct defined in Card.h with 3 members: int rank, enum Suit::suit, bool shown
+
     Output: Void, but vector<vector<Card>> &table, vector<CardMap> &cardMap, Card deck[] are passed by reference
             vector<vector<Card>> &table, table[0] to table[6] with 1 to 7 elements(cards), table[7] with 24 elements, table[8] with 4 elements(cards with 0 rank)
             vector<CardMap> &cardMap, from index 0-51 (represent A to K, Diamond to Spade) are filled the {column, row} of each card
