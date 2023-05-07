@@ -39,9 +39,9 @@ How to play:
 1. Flip the stock deck 
  -enter 'f' 
 2. Move card  
- -enter number {2,3,4,5,6,7,8,9,10,j,q,k,a}  
  -enter types {d,c,h,s} for Diamond, Club, Heart, Spade  
- for example d2 for Diamond 2 and cq for Club queen  
+ -enter number {2,3,4,5,6,7,8,9,10,j,q,k,a}  
+ for example 2d for 2 of Diamond and qc for Queen of Club   
 3. Undo  
  -enter 'undo'  
 4. Redo  
