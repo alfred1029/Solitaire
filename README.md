@@ -1,5 +1,5 @@
-# ENGG1340 project group 69  
-We made a Solitaire game!  
+# C/C++ Solitaire game  
+We made a text-based Solitaire game!  
 <img src="https://user-images.githubusercontent.com/28785775/236660558-d959ce84-8190-4413-b849-ad3a0f1670c0.png" width="439" height="322"><img src="https://user-images.githubusercontent.com/28785775/236660565-e4ec4de1-1786-422e-961b-f751daaf5cbb.png" width="439" height="322">
 
 ## Game description
