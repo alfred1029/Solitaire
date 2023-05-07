@@ -74,9 +74,10 @@ int checkValid(vector<vector<Card>> &table, vector<CardMap> &cardMap, Ptr &p, st
         case 3:
             if (input == "sav")
                 valid = 7;
-            if (input[2] != 's')
+            if (input[0] != 'm')
                 break; 
-            // if input[2] == s
+            // if input[0] == m, move card to stack
+            input = input.substr(1, 2);
             card = convertCard(input);
             // if the card is valid
             if (card != -1){

@@ -138,7 +138,7 @@ int main(){
     int valid;
     //save the initial process
     saveProcess(table, ptr, cardMap, processes);
-    
+
     // ------------------------------------------ GUI ------------------------------------------
     static WINDOW *topStatus, *stock, *stack, *column[7], *bottomStatus, *inputWindow;
     // initialize the top status window with 1 row and 90 columns, start at (0,0)
@@ -221,6 +221,8 @@ int main(){
                     updateColumn(table, column[ptr.target], ptr.target);
                 if (ptr.column == 7)
                     updateStock(table, stock);
+                else if (ptr.column == 8)
+                    updateStack(table, stack);
                 else
                     updateColumn(table, column[ptr.column], ptr.column);
                 break;
