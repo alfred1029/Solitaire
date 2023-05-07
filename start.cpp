@@ -131,15 +131,7 @@ int printMenu(WINDOW * &window) {
             else if (userInput==4) {
                 // quit
                 // clear the screen
-                werase(window);
-                wclear(window);
-                wrefresh(window);
-                delwin(window);
-	            endwin();
-                refresh();
-                erase();
-                clear();
-                exit(0);
+                return 4;
             }
         }
     }
