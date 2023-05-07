@@ -17,9 +17,9 @@ static char RANK[14] = {' ', 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', '
 //void deleteWindow(WINDOW * &topStatus, WINDOW * &stock, WINDOW * &stack, WINDOW * column[], WINDOW * &bottomStatus, WINDOW * &input);
 void drawCardTop(Card &card, WINDOW * &window, int y);
 void drawCardBottom(WINDOW * &window, int y);
-void updateStock(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr);
-void updateStack(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr);
-void updateColumn(vector<vector<Card> > &table, WINDOW * &window, Ptr &ptr, int column);
+void updateStock(vector<vector<Card> > &table, WINDOW * &window);
+void updateStack(vector<vector<Card> > &table, WINDOW * &window);
+void updateColumn(vector<vector<Card> > &table, WINDOW * &window, int column);
 void updateTopStatus(WINDOW * &window, Ptr &ptr);
 void updateBottomStatus(WINDOW * &window, string message);
 string listenInput(WINDOW * &window);
