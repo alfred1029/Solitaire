@@ -36,7 +36,7 @@ main.o: main.cpp initTable.h
 	g++ $(FLAGS) -c $<
 
 main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o gui.o start.o
-	g++ $(FLAGS) $^ -o $@ -lncurses -lmenu
+	g++ $(FLAGS) $^ -o $@ -lncursesw
 
 clean:
 	$(command) *.o *.exe main
