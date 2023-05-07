@@ -21,7 +21,7 @@ Alternatively, revealing all cards in a face-up position in the columns would al
  _A new card is flipped to the stock deck_  
 ### ```2d``` ```ah``` ```10s``` to move a card  
  _The first part is the rank ```2,3,4,5,6,7,8,9,10,j,q,k,a```  
- The second part is the suit, with ```d``` for Diamond, ```c``` for Club, ```h``` for Heart, ```s``` for Spades_ 
+ The second part is the suit, with ```d``` for ♦, ```c``` for ♣, ```h``` for ♥, ```s``` for ♠_ 
 ### ```undo``` ```redo```  
 _Undo or redo a move_
 ### ```save```  
