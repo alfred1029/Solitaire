@@ -134,7 +134,7 @@ Program functions are stored separately in different files, including “checkIn
 
 ## Compilation and execution instruction
 The is no additional configuration required.
-However, running in Windows should be avoided. Only run on Linux/UNIX based systems.
+However, running in Windows should be avoided. Only Linux/UNIX compatability is guaranteed.
 ```
 make run
 ```
