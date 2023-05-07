@@ -15,16 +15,16 @@ Cards can only be moved according to a set of specific rules. To win the game, b
 Alternatively, revealing all cards in a face-up position in the columns would also signify a win, as the face-up cards can easily be moved to form the four complete stacks. 
 
 ## Input instructions  
-### 1. ```f``` to flip  
+### ```f``` to flip  
  _A new card is flipped to the stock deck_  
-### 2. ```2d``` ```ah``` ```10s``` to move a card  
+### ```2d``` ```ah``` ```10s``` to move a card  
  _The first part is the rank ```2,3,4,5,6,7,8,9,10,j,q,k,a```  
  The second part is the suit, with ```d``` for Diamond, ```c``` for Club, ```h``` for Heart, ```s``` for Spades_ 
-### 3. ```undo```  
-### 4. ```Redo```  
-### 5. ```save```  
+### ```undo``` ```redo```  
+_Undo or redo a move_
+### ```save```  
 _Save game progress  (Please do not delete the saveGame.txt or else the game progress will be deleted)_  
-### 6. ```exit```  
+### ```exit```  
 _exit **WITHOUT** saving_
 
 ## Game rules
