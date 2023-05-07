@@ -12,6 +12,8 @@
 #include "redoUndo.h"
 #include "checkWin.h"
 #include "saveLoadFile.h"
+#include <ncurses.h>
+
 
 using namespace std;
 
