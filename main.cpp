@@ -10,7 +10,8 @@
 #include "redoUndo.h"
 #include <locale.h>
 #include "checkWin.h"
-#include "initWinnableDeck.h"
+#include "saveLoadFile.h"
+#include "leaderboard.h"
 
 using namespace std;
 
