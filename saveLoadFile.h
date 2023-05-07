@@ -9,6 +9,6 @@
 using namespace std;
 
 void saveGame(const vector<vector<Card>> &table, const Ptr &p);
-void loadGame(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap);
+int loadGame(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap);
 
 #endif

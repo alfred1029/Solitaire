@@ -5,6 +5,7 @@
 #include<string>
 #include"card.h"
 #include<ncurses.h>
+#include <menu.h>
 #include<map>
 
 using namespace std;
@@ -22,4 +23,12 @@ void updateTopStatus(WINDOW * &window, Ptr &ptr);
 void updateBottomStatus(WINDOW * &window, string message);
 string listenInput(WINDOW * &window);
 
+// for start.cpp
+void printLogo(WINDOW * &window);
+void printBackground(WINDOW * &window);
+int printMenu(WINDOW * &window);
+void printLoad(WINDOW * &window);
+void printLeaderboard(WINDOW * &window);
+void printAbout(WINDOW * &window);
+int printDifficulty(WINDOW * &window);
 #endif

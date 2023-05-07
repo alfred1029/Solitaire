@@ -26,6 +26,9 @@ redoUndo.o: redoUndo.cpp redoUndo.h card.h
 checkWin.o: checkWin.cpp checkWin.h card.h
 	g++ $(FLAGS) -c $<
 	
+start.o: start.cpp gui.h
+	g++ $(FLAGS) -c $<
+	
 leaderboard.o: leaderboard.cpp leaderboard.h card.h
 	g++ $(FLAGS) -c $<
 
@@ -35,10 +38,14 @@ saveLoadFile.o: saveLoadFile.cpp saveLoadFile.h card.h
 main.o: main.cpp initTable.h
 	g++ $(FLAGS) -c $<
 
-main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o gui.o saveLoadFile.o
-	g++ $(FLAGS) $^ -o $@ -lncurses
+main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o gui.o start.o saveLoadFile.o
+	g++ $(FLAGS) $^ -o $@ -I/ncursesw -lncursesw
 
 clean:
+	$(command) *.o *.exe main
+
+run: clean main
+	./main
 	$(command) *.o *.exe main
 
 run: clean main
