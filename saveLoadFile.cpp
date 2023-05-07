@@ -54,7 +54,8 @@ int loadGame(vector<vector<Card>> &table, Ptr &p, vector<CardMap> &cardMap){
         istringstream iss(line);
         iss >> rank >> suit;
         if (rank == "Score/Move...:"){
-            iss >> p.score >> p.move >> p.next >> p.target >> p.row >> p.column;
+            iss >> p.move >> p.next >> p.target >> p.row >> p.column;
+            p.score = suit;
             break;
         }
 
