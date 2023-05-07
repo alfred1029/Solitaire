@@ -27,7 +27,6 @@ string listenInput(WINDOW * &window);
 void printLogo(WINDOW * &window);
 void printBackground(WINDOW * &window);
 int printMenu(WINDOW * &window);
-void printLoad(WINDOW * &window);
 void printLeaderboard(WINDOW * &window);
 void printAbout(WINDOW * &window);
 int printDifficulty(WINDOW * &window);
