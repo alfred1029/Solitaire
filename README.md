@@ -147,10 +147,10 @@ Run the game (window size: **120x40 fixed**)
 ./main
 ```
 if the make fail, please install ncurses library:
-- MacOS
+- MacOS (requires homebrew, see https://brew.sh/)  
 ```brew install ncurses```
-- Linux
-```sudo apt-get install libncursesw```
+- Linux  
+```sudo apt-get install libncursesw5-dev```
 
 ## Group members
 Cheung Yan Shek, UID: 3036065575, Github username: namelessxxv
