@@ -22,11 +22,11 @@ Alternatively, revealing all cards in a face-up position in the columns would al
 ### ```2d``` ```ah``` ```10s``` to move a card  
  _The first part is the rank ```2,3,4,5,6,7,8,9,10,j,q,k,a```  
  The second part is the suit, with ```d``` for ♦, ```c``` for ♣, ```h``` for ♥, ```s``` for ♠_ 
-### ```undo``` ```redo```  
+### ```u``` ```r```  
 _Undo or redo a move_
-### ```save```  
+### ```sav```  
 _Save game progress  (Please do not delete the saveGame.txt or else the game progress will be deleted)_  
-### ```exit```  
+### ```e```  
 _exit **WITHOUT** saving_
 
 ## Game rules
