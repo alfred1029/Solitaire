@@ -101,15 +101,24 @@ Program functions are stored separately in different files, including “checkIn
 ## Used C/C++ library list
 
 - iostream
+  for standard input and output
 - vector
-- string
+  store element for example storing the deck, columns etc.
 - map
+  store element for example mapping leaderboard name with score and mapping the struct Card with its location
+- string
 - ncurses.h
+  gui
 - menu.h
+  gui
 - random
+  initializing random deck and choosing random winnable deck from data base
 - algorithm
+  mainly using for sorting vector such as the score of leaderboard
 - sstream
+  performing extraction mainly using isstringstream to splitting text from files
 - fstream
+  for file input and output in initializing winnable deck, saveLoad, leaderboard
 - locale.h
 
 ## Compilation and execution instruction
