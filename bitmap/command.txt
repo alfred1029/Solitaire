@@ -1,0 +1,11 @@
+##### COMMANDS ######
+ f   - flip new card
+ 2d  - move 2♦
+ jc  - move J♣
+ ah  - move A♥
+ 10s - move 10♠
+ u   - undo move
+ r   - redo move
+ sav - save game
+ e   - exit
+#####################
