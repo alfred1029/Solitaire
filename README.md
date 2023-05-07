@@ -1,25 +1,4 @@
 # ENGG1340 project group 69
-## To do list
-
-1. Deck initialization  (Random init, Import Winnable Deck) 
-  - Random init  
-  - Import Winnable Deck
-2. GUI (Ncurses.h)
-  - Added guiTemp.cpp for testing purpose
-  - To be implement: Offical GUI
-3. Check valid input  (For current GUI - DONE)
-4. Card Movement  DONE
-  - column to column  
-  - column to stack  
-  - deck to column  
-  - deck to stack  
-5. undo redo (undo redo done)
-6. Save load  
-7. File input output  
-8. Check win/ no more available move  (Ally)  
-9. Leaderboard  
-10. Score  
-
 
 ## Game description
 Introduction
@@ -55,6 +34,22 @@ Drawing cards from the stock:
 3. Only the three most recently drawn cards are shown. 
 4. If the card drawn cannot be placed, the player should move it to the wastepile and draw again. 
 5. When all cards in the stockpile have been drawn, the wastepile is cycled. 
+
+How to play:
+1.) Flip the stock deck
+-enter 'f'
+2.) Move card
+-enter number {2,3,4,5,6,7,8,9,10,j,q,k,a}
+-enter types {d,c,h,s} for Diamond, Club, Heart, Spade
+for example d2 for Diamond 2 and qc for Club queen
+3.) Undo
+-enter 'undo'
+4.) Redo
+-enter 'redo'
+5.) Save game progress (Please do not delete the saveGame.txt or else the game progress will be deleted)
+-enter 'save'
+6.) Exit wihout saving
+-enter 'exit
 
 Scoring method: 
 
