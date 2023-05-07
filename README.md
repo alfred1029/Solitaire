@@ -37,19 +37,19 @@ Drawing cards from the stock:
 
 How to play: 
 1. Flip the stock deck 
--enter 'f' 
+ -enter 'f' 
 2. Move card 
--enter number {2,3,4,5,6,7,8,9,10,j,q,k,a} 
--enter types {d,c,h,s} for Diamond, Club, Heart, Spade 
-for example d2 for Diamond 2 and qc for Club queen 
+ -enter number {2,3,4,5,6,7,8,9,10,j,q,k,a}  
+ -enter types {d,c,h,s} for Diamond, Club, Heart, Spade  
+ for example d2 for Diamond 2 and qc for Club queen  
 3. Undo 
--enter 'undo' 
+ -enter 'undo'  
 4. Redo 
--enter 'redo' 
+ -enter 'redo'  
 5. Save game progress (Please do not delete the saveGame.txt or else the game progress will be deleted) 
--enter 'save' 
+ -enter 'save'  
 6. Exit wihout saving 
--enter 'exit 
+ -enter 'exit  
 
 Scoring method: 
 
@@ -95,26 +95,26 @@ Program functions are stored separately in different files, including “checkIn
 
 ## Used C/C++ library list
 
-- iostream
-  for standard input and output
-- vector
-  to store element for example storing the deck, columns etc.
-- map
-  to store element for example mapping leaderboard name with score and mapping the struct Card with its location
-- string
-- ncurses.h
-  for gui
-- menu.h
-  for gui
-- random
-  for initializing random deck and choosing random winnable deck from data base
-- algorithm
-  mainly using for sorting vector such as the score of leaderboard
-- sstream
-  for performing extraction mainly using isstringstream to splitting text from files
-- fstream
-  for file input and output in initializing winnable deck, saveLoad, leaderboard
-- locale.h
+- iostream 
+  for standard input and output 
+- vector 
+  to store element for example storing the deck, columns etc. 
+- map 
+  to store element for example mapping leaderboard name with score and mapping the struct Card with its location 
+- string 
+- ncurses.h 
+  for gui 
+- menu.h 
+  for gui 
+- random 
+  for initializing random deck and choosing random winnable deck from data base 
+- algorithm 
+  mainly using for sorting vector such as the score of leaderboard 
+- sstream 
+  for performing extraction mainly using isstringstream to splitting text from files 
+- fstream 
+  for file input and output in initializing winnable deck, saveLoad, leaderboard 
+- locale.h 
 
 ## Compilation and execution instruction
 ## Group members
