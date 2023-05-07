@@ -28,11 +28,14 @@ checkWin.o: checkWin.cpp checkWin.h card.h
 	
 leaderboard.o: leaderboard.cpp leaderboard.h card.h
 	g++ $(FLAGS) -c $<
+	
+homePage.o: homePage.cpp homePage.h
+	g++ $(FLAGS) -c $<
 
 main.o: main.cpp initTable.h
 	g++ $(FLAGS) -c $<
 
-main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o gui.o
+main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o gui.o homePage.o
 	g++ $(FLAGS) $^ -o $@ -lncurses
 
 clean:
