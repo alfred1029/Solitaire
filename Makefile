@@ -32,10 +32,13 @@ start.o: start.cpp gui.h
 leaderboard.o: leaderboard.cpp leaderboard.h card.h
 	g++ $(FLAGS) -c $<
 
+saveLoadFile.o: saveLoadFile.cpp saveLoadFile.h card.h
+	g++ $(FLAGS) -c $<
+
 main.o: main.cpp initTable.h
 	g++ $(FLAGS) -c $<
 
-main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o gui.o start.o
+main: main.o initTable.o guiTemp.o move.o checkInput.o redoUndo.o checkWin.o leaderboard.o gui.o start.o saveLoadFile.o
 	g++ $(FLAGS) $^ -o $@ -lncursesw
 
 clean:

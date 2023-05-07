@@ -47,7 +47,7 @@ void printBackground(WINDOW * &window) {
 }
 
 // Print the menu
-void printMenu(WINDOW * &window) {
+int printMenu(WINDOW * &window) {
     start_color();
 	init_pair(2, COLOR_RED, COLOR_WHITE);
     refresh();
@@ -100,13 +100,13 @@ void printMenu(WINDOW * &window) {
             userInput=highlight;
             // do actions based on user input
             if (userInput==0)
-                return;    
+                return 0;    
             if (userInput==1) {
                 // load
                 // clear the screen
                 wclear(window);
                 // print the background
-                printLoad(window);
+                return 1;
                 // refresh the screen
                 wrefresh(window);
             }

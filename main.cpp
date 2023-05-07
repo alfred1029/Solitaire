@@ -9,6 +9,8 @@
 #include "card.h"
 #include "redoUndo.h"
 #include <locale.h>
+#include <ncurses.h>
+#include "saveLoadFile.h"
 
 using namespace std;
 
@@ -49,29 +51,38 @@ int main(){
     // print the background
     printBackground(background);
     // print the menu
+    bool load = false;
     while (true) {
         // initialize the menu window with 15 row and 40 columns, start at (20,40)
         menu = newwin(15, 26, 20, 47);
-        printMenu(menu);
-        refresh();
-        int diff= printDifficulty(diffMenu);
-        if (diff == 0){
-            difficulty = "easy";
-            break;
+        int status = printMenu(menu);
+        // start new game
+        if (status==0){
+            refresh();
+            int diff= printDifficulty(diffMenu);
+            if (diff == 0){
+                difficulty = "easy";
+                break;
+            }
+            else if (diff == 1){
+                difficulty = "medium";
+                break;
+            }
+            else if (diff == 2){
+                difficulty = "hard";
+                break;
+            }
+            else if (diff == 3){
+                difficulty = "expert";
+                break;
+            }
+            wclear(diffMenu);
         }
-        else if (diff == 1){
-            difficulty = "medium";
-            break;
+        // load savegame
+        else{
+            load = true;
+            break;        
         }
-        else if (diff == 2){
-            difficulty = "hard";
-            break;
-        }
-        else if (diff == 3){
-            difficulty = "expert";
-            break;
-        }
-        wclear(diffMenu);
     }
     refresh();
     noecho();
@@ -88,17 +99,33 @@ int main(){
     vector<vector<Card>> table(9);
     vector<CardMap> cardMap(52);
     Card * deck = new Card[52];
-    // initialize a winnable deck (to be debbuged)
-    initWinnableDeck(deck, difficulty);
-    initTable(table, cardMap, deck);
-    std::cout << "Deck initialized!" << endl;
-    // free memory from deck
-    delete [] deck;
-    deck = nullptr;
+    bool newAnyway = true;
+    if (load){
+        // load game
+        Ptr ptr;
+        int loadfail = loadGame(table, ptr, cardMap);
+        newAnyway = false;
+        if (loadfail) {
+            std::cout << "Unable to find saved game! Generating new easy game. Press any key to continue..." << endl;
+            difficulty = "easy";
+            getch();
+            newAnyway = true;
+        }
+    }
+    if (newAnyway){
+        // if newgame
+        // initialize a winnable deck
+        initWinnableDeck(deck, difficulty);
+        initTable(table, cardMap, deck);
+        std::cout << "Deck initialized!" << endl;
+        // free memory from deck
+        delete [] deck;
+        deck = nullptr;
+    }
     // Ptr p to store the information of the table
+    Ptr ptr;
     // command to store user input
     // valid to check if command is valid and pass it to corresponding function
-    Ptr ptr;
     string command="000",
     message="Welcome my friend! Please enter command:";
     char input[100];
